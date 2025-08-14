@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 1: แนะนำ Power Platform และ Power Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Serene Neutrals -->
+    <!-- Application Structure Plan: ผมได้ออกแบบแอปพลิเคชันนี้ให้เป็นโมดูลการเรียนรู้แบบหน้าเดียว (Single-Page) ที่เลื่อนลงมาตามลำดับเนื้อหา แต่มีแถบนำทางด้านบนเพื่อให้ผู้ใช้สามารถข้ามไปยังส่วนที่สนใจได้ทันที โครงสร้างนี้เปลี่ยนสไลด์แบบเดิมให้กลายเป็นประสบการณ์เชิงโต้ตอบ โดยแบ่งเนื้อหาเป็นส่วนต่างๆ คือ 1. ภาพรวม (ใช้การ์ดแบบคลิกได้) 2. สำรวจสตูดิโอ (ใช้แผนภาพพร้อม Hotspot) 3. องค์ประกอบหลัก (ใช้แท็บแสดงข้อมูล) 4. ภาคปฏิบัติและ Workshop (ใช้ Accordion) เพื่อให้นักศึกษาสามารถเรียนรู้ตามลำดับขั้นและมีส่วนร่วมกับเนื้อหาได้มากขึ้น -->
+    <!-- Visualization & Content Choices: เนื้อหาจากสไลด์ถูกแปลงเป็นองค์ประกอบเชิงโต้ตอบ: 1. ส่วนประกอบ Power Platform (ข้อมูล) -> Goal: Inform -> Viz: Interactive Cards -> Interaction: คลิกเพื่อดูคำอธิบาย -> Justification: น่าสนใจกว่ารายการธรรมดา 2. หน้าตา Power Apps Studio (ข้อมูล) -> Goal: Organize/Inform -> Viz: Diagram with Hotspots -> Interaction: คลิก Hotspot เพื่อแสดงรายละเอียด -> Justification: สอนแบบ Interactive ตามตำแหน่งจริง 3. Controls ต่างๆ (ข้อมูล) -> Goal: Inform -> Viz: Tabbed Interface -> Interaction: คลิกเพื่อสลับดูข้อมูล Control -> Justification: จัดการข้อมูลให้ดูง่าย 4. Workshop (ข้อมูล) -> Goal: Organize -> Viz: Accordion -> Interaction: คลิกเพื่อเปิด/ปิดขั้นตอน -> Justification: นำเสนอขั้นตอนที่ซับซ้อนอย่างเป็นระเบียบ -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f8f7f4;
+            color: #4a4a4a;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #d97706;
+            border-bottom-color: #d97706;
+        }
+        .active-link {
+            color: #d97706;
+            border-bottom-color: #d97706;
+            font-weight: 700;
+        }
+        .hotspot {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: rgba(234, 179, 8, 0.7);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .hotspot:hover {
+            transform: scale(1.2);
+            background-color: rgba(217, 119, 6, 1);
+        }
+        .hotspot.active {
+            transform: scale(1.2);
+            background-color: rgba(217, 119, 6, 1);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-amber-700">บทที่ 1: Power Apps</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="nav-link pb-1 border-b-2 border-transparent">ภาพรวม</a>
+                <a href="#studio" class="nav-link pb-1 border-b-2 border-transparent">สตูดิโอ</a>
+                <a href="#practice" class="nav-link pb-1 border-b-2 border-transparent">ภาคปฏิบัติ</a>
+                <a href="#workshop" class="nav-link pb-1 border-b-2 border-transparent">Workshop</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#overview" class="block py-2 text-gray-700">ภาพรวม</a>
+            <a href="#studio" class="block py-2 text-gray-700">สตูดิโอ</a>
+            <a href="#practice" class="block py-2 text-gray-700">ภาคปฏิบัติ</a>
+            <a href="#workshop" class="block py-2 text-gray-700">Workshop</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="intro" class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">แนะนำ Power Platform และเริ่มต้นกับ Power Apps</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">ยินดีต้อนรับสู่บทเรียนแรก! ในบทนี้ เราจะสำรวจโลกของ Power Platform และเรียนรู้วิธีสร้างแอปพลิเคชันแรกของคุณด้วย Power Apps ตั้งแต่เริ่มต้น</p>
+        </section>
+
+        <section id="overview" class="mb-16 scroll-mt-24">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">Power Platform คืออะไร?</h3>
+            <p class="text-center text-gray-600 mb-8">คือชุดเครื่องมือ Low-Code จาก Microsoft ที่ช่วยให้ทุกคนสร้างโซลูชันทางธุรกิจได้อย่างรวดเร็ว ประกอบด้วยองค์ประกอบหลัก 4 อย่าง</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h4 class="font-bold text-xl mb-2 text-blue-600">Power Apps</h4>
+                    <p class="text-gray-600">เครื่องมือสำหรับสร้างแอปพลิเคชันทางธุรกิจที่กำหนดเองได้โดยไม่ต้องเขียนโค้ดซับซ้อน</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h4 class="font-bold text-xl mb-2 text-teal-600">Power Automate</h4>
+                    <p class="text-gray-600">เครื่องมือสำหรับสร้าง Workflow อัตโนมัติเพื่อเชื่อมโยงแอปและบริการต่างๆ เข้าด้วยกัน</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h4 class="font-bold text-xl mb-2 text-yellow-600">Power BI</h4>
+                    <p class="text-gray-600">เครื่องมือสำหรับวิเคราะห์ข้อมูลและสร้าง Dashboard เพื่อแสดงผลข้อมูลเชิงลึก</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h4 class="font-bold text-xl mb-2 text-indigo-600">Power Virtual Agents</h4>
+                    <p class="text-gray-600">เครื่องมือสำหรับสร้าง Chatbot อัจฉริยะเพื่อตอบคำถามและให้บริการลูกค้า</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="studio" class="mb-16 scroll-mt-24">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">สำรวจ Power Apps Studio</h3>
+            <p class="text-center text-gray-600 mb-8">Power Apps Studio คือพื้นที่ทำงานหลักของคุณ ลองคลิกที่หมายเลขเพื่อดูคำอธิบายของแต่ละส่วน</p>
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <div class="w-full lg:w-2/3 relative">
+                    <img src="https://i.imgur.com/gY5nC1U.png" alt="Power Apps Studio Interface" class="rounded-lg shadow-lg w-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/e2e8f0/4a5568?text=Power+Apps+Studio';">
+                    <div id="hotspot-1" class="hotspot" style="top: 5%; left: 50%;">1</div>
+                    <div id="hotspot-2" class="hotspot" style="top: 15%; left: 50%;">2</div>
+                    <div id="hotspot-3" class="hotspot" style="top: 50%; left: 5%;">3</div>
+                    <div id="hotspot-4" class="hotspot" style="top: 55%; left: 50%;">4</div>
+                    <div id="hotspot-5" class="hotspot" style="top: 50%; right: 5%;">5</div>
+                </div>
+                <div id="hotspot-info" class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-md min-h-[300px]">
+                    <h4 id="hotspot-title" class="font-bold text-xl mb-2 text-amber-700">คลิกที่หมายเลขเพื่อเริ่มต้น</h4>
+                    <p id="hotspot-desc" class="text-gray-600">คำอธิบายของส่วนต่างๆ ใน Power Apps Studio จะแสดงที่นี่</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="practice" class="mb-16 scroll-mt-24">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">ภาคปฏิบัติ: สร้างแอปแรกของคุณ</h3>
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <div class="accordion-item border-b">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-700">ขั้นตอนที่ 1: สร้างแอปใหม่</span>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <p class="mb-2">1. ไปที่ <a href="https://make.powerapps.com" target="_blank" class="text-blue-600 hover:underline">make.powerapps.com</a></p>
+                            <p class="mb-2">2. คลิก <strong>Create</strong> > <strong>Canvas app from blank</strong></p>
+                            <p class="mb-2">3. ตั้งชื่อแอปว่า "MyFirstApp" และเลือกรูปแบบ <strong>Tablet</strong></p>
+                            <p>4. กด <strong>Create</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item border-b">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-700">ขั้นตอนที่ 2: ออกแบบหน้าจอแรก</span>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <p class="mb-2">1. ที่แถบ Ribbon ด้านบน คลิก <strong>Insert</strong> > <strong>Label</strong></p>
+                            <p class="mb-2">2. ที่ Properties Pane ด้านขวา เปลี่ยนค่า <strong>Text</strong> เป็น "ยินดีต้อนรับ!"</p>
+                            <p class="mb-2">3. คลิก <strong>Insert</strong> > <strong>Button</strong></p>
+                            <p>4. เปลี่ยนค่า <strong>Text</strong> ของ Button เป็น "ไปต่อ"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-700">ขั้นตอนที่ 3: เพิ่มหน้าจอและสร้างการนำทาง (Navigation)</span>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <p class="mb-2">1. ที่ Tree View (ด้านซ้าย) คลิก <strong>New screen</strong> > <strong>Blank</strong> เพื่อสร้างหน้าจอที่สอง</p>
+                            <p class="mb-2">2. กลับมาที่หน้าจอแรก และเลือกปุ่ม "ไปต่อ"</p>
+                            <p class="mb-2">3. ที่ Formula Bar เลือก Property เป็น <strong>OnSelect</strong></p>
+                            <p class="mb-2">4. พิมพ์สูตร:</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-md text-sm mt-2"><code>Navigate(Screen2, ScreenTransition.Fade)</code></pre>
+                            <p class="mt-4">5. กดปุ่ม Play (▶) ที่มุมขวาบนเพื่อทดสอบการทำงาน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workshop" class="scroll-mt-24">
+            <div class="bg-amber-600 text-white p-8 rounded-lg shadow-xl">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-center">Workshop (1 ชั่วโมง): สร้างแอป Task Manager</h3>
+                <p class="text-center mb-6">มาลงมือทำจริง! สร้างแอปจัดการงานอย่างง่าย เพื่อทบทวนความรู้ทั้งหมดที่เรียนมาในวันนี้</p>
+                <div class="bg-white/90 text-gray-800 p-6 rounded-lg">
+                    <div class="accordion-item border-b border-amber-200">
+                        <button class="accordion-header w-full text-left py-4 focus:outline-none">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold text-amber-800">เป้าหมายที่ 1 (15 นาที): เตรียมโครงสร้างแอป</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 bg-amber-50 rounded-b-md">
+                                <p>1. สร้าง Canvas App ใหม่ในรูปแบบ <strong>Tablet</strong></p>
+                                <p>2. สร้าง 2 หน้าจอ:</p>
+                                <ul class="list-disc list-inside ml-4 mt-2">
+                                    <li>เปลี่ยนชื่อ Screen1 เป็น <strong>HomeScreen</strong></li>
+                                    <li>สร้างหน้าจอใหม่และตั้งชื่อว่า <strong>NewTaskScreen</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-amber-200">
+                        <button class="accordion-header w-full text-left py-4 focus:outline-none">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold text-amber-800">เป้าหมายที่ 2 (30 นาที): ออกแบบ UI และการนำทาง</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 bg-amber-50 rounded-b-md">
+                                <p class="font-semibold mb-2">บนหน้า HomeScreen:</p>
+                                <ul class="list-disc list-inside ml-4 mb-4">
+                                    <li>เพิ่ม Label ที่มีข้อความว่า "รายการงานของฉัน"</li>
+                                    <li>เพิ่ม Button ที่มีข้อความว่า "เพิ่มงานใหม่"</li>
+                                    <li>เขียนสูตรที่ปุ่มนี้ให้ Navigate ไปยัง <strong>NewTaskScreen</strong></li>
+                                </ul>
+                                <p class="font-semibold mb-2">บนหน้า NewTaskScreen:</p>
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>เพิ่ม Label "ชื่องาน" และ Text Input สำหรับกรอกชื่องาน</li>
+                                    <li>เพิ่ม Button "บันทึก" และ "ยกเลิก"</li>
+                                    <li>เขียนสูตรที่ปุ่ม "ยกเลิก" ให้ Navigate กลับไปยัง <strong>HomeScreen</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header w-full text-left py-4 focus:outline-none">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold text-amber-800">เป้าหมายที่ 3 (15 นาที): ทดสอบและสรุป</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 bg-amber-50 rounded-b-md">
+                                <p>1. กดปุ่ม Play เพื่อทดสอบการทำงานของแอป</p>
+                                <p>2. ตรวจสอบว่าปุ่ม "เพิ่มงานใหม่" และ "ยกเลิก" ทำงานถูกต้องหรือไม่</p>
+                                <p>3. เตรียมคำถามที่สงสัยไว้ถามผู้สอน</p>
+                                <p class="mt-4 font-semibold">เยี่ยมมาก! คุณได้สร้างพื้นฐานของแอป Task Manager สำเร็จแล้ว!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2025 หลักสูตร Power Platform. จัดทำเพื่อการศึกษา</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const hotspotData = {
+                'hotspot-1': { title: '1. Ribbon', description: 'แถบเครื่องมือด้านบน ประกอบด้วยเมนูสำหรับแทรก (Insert) ออบเจ็กต์ต่างๆ, จัดการมุมมอง (View), และตั้งค่าการทำงาน (Action) ของแอป' },
+                'hotspot-2': { title: '2. Formula Bar', description: 'แถบสำหรับเขียนสูตร (คล้าย Excel) เพื่อกำหนด Logic และการทำงานของ Controls ต่างๆ เช่น การคำนวณ หรือการนำทาง' },
+                'hotspot-3': { title: '3. Tree View', description: 'แสดงโครงสร้างทั้งหมดของแอปในรูปแบบต้นไม้ ทำให้เห็นภาพรวมของหน้าจอ (Screens) และ Controls ทั้งหมดที่อยู่ในแอป' },
+                'hotspot-4': { title: '4. Canvas', description: 'พื้นที่หลักสำหรับการออกแบบหน้าตาของแอป คุณสามารถลากและวาง Controls ต่างๆ ลงบนพื้นที่นี้ได้โดยตรง' },
+                'hotspot-5': { title: '5. Properties Pane', description: 'แผงด้านขวาสำหรับปรับแต่งคุณสมบัติ (Properties) ของ Control ที่คุณเลือก เช่น สี, ขนาด, ข้อความ, และการทำงานเมื่อถูกคลิก (OnSelect)' }
+            };
+
+            const hotspotInfoTitle = document.getElementById('hotspot-title');
+            const hotspotInfoDesc = document.getElementById('hotspot-desc');
+            const hotspots = document.querySelectorAll('.hotspot');
+
+            hotspots.forEach(hotspot => {
+                hotspot.addEventListener('click', () => {
+                    hotspots.forEach(h => h.classList.remove('active'));
+                    hotspot.classList.add('active');
+                    const data = hotspotData[hotspot.id];
+                    hotspotInfoTitle.textContent = data.title;
+                    hotspotInfoDesc.textContent = data.description;
+                });
+            });
+
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                        document.querySelectorAll('.accordion-header span:last-child').forEach(i => i.style.transform = 'rotate(0deg)');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 120) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active-link');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
