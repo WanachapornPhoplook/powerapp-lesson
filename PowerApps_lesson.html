@@ -119,12 +119,12 @@
             <p class="text-center text-gray-600 mb-8">Power Apps Studio คือพื้นที่ทำงานหลักของคุณ ลองคลิกที่หมายเลขเพื่อดูคำอธิบายของแต่ละส่วน</p>
             <div class="flex flex-col lg:flex-row gap-8 items-start">
                 <div class="w-full lg:w-2/3 relative">
-                    <img src="https://i.imgur.com/gY5nC1U.png" alt="Power Apps Studio Interface" class="rounded-lg shadow-lg w-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/e2e8f0/4a5568?text=Power+Apps+Studio';">
-                    <div id="hotspot-1" class="hotspot" style="top: 5%; left: 50%;">1</div>
-                    <div id="hotspot-2" class="hotspot" style="top: 15%; left: 50%;">2</div>
-                    <div id="hotspot-3" class="hotspot" style="top: 50%; left: 5%;">3</div>
-                    <div id="hotspot-4" class="hotspot" style="top: 55%; left: 50%;">4</div>
-                    <div id="hotspot-5" class="hotspot" style="top: 50%; right: 5%;">5</div>
+                    <img src="img/home.png" alt="ภาพหน้าจอ Power Apps Studio" class="rounded-lg shadow-lg w-full" onerror="this.onerror=null;this.src='https://sauacth-my.sharepoint.com/:i:/g/personal/wanachapornp_live_sau_ac_th/EbPZ3_EcbQ9Dl2R8PpWl7K4BGyEk2RgthiuFH8BIrQ8Llw?e=MnICOi';">
+                    <div id="hotspot-1" class="hotspot" style="top: 2.5%; left: 16%;">1</div>
+                    <div id="hotspot-2" class="hotspot" style="top: 8%; left: 47%;">2</div>
+                    <div id="hotspot-3" class="hotspot" style="top: 30%; left: 4.5%;">3</div>
+                    <div id="hotspot-4" class="hotspot" style="top: 50%; left: 45%;">4</div>
+                    <div id="hotspot-5" class="hotspot" style="top: 30%; right: 4%;">5</div>
                 </div>
                 <div id="hotspot-info" class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-md min-h-[300px]">
                     <h4 id="hotspot-title" class="font-bold text-xl mb-2 text-amber-700">คลิกที่หมายเลขเพื่อเริ่มต้น</h4>
@@ -185,6 +185,29 @@
                             <p class="mt-4">5. กดปุ่ม Play (▶) ที่มุมขวาบนเพื่อทดสอบการทำงาน</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+		<section id="formulas" class="mb-16 scroll-mt-24">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula: หัวใจของการสร้างแอป</h3>
+            <p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป</p>
+            <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex flex-col space-y-4">
+                    <div>
+                        <h4 class="font-bold text-xl mb-2 text-amber-700">Formula คืออะไร?</h4>
+                        <p class="text-gray-600">คือชุดคำสั่งที่เราใช้ในการบอก Power Apps ว่าเมื่อเกิดเหตุการณ์บางอย่างขึ้น (เช่น ผู้ใช้กดปุ่ม) แอปจะต้องทำอะไรต่อ</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-2 text-amber-700">ตัวอย่าง: การเปลี่ยนหน้าจอด้วยสูตร <span class="font-mono text-gray-800">Navigate()</span></h4>
+                        <p class="text-gray-600">สูตรนี้ใช้สำหรับการนำทางจากหน้าจอหนึ่งไปยังอีกหน้าจอหนึ่ง เมื่อคุณเขียนสูตรนี้ใน Property ชื่อ <span class="font-mono bg-gray-100 p-1 rounded">OnSelect</span> ของปุ่ม</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg text-center">
+                    <p class="text-gray-600 mb-4">ลองดูตัวอย่างสูตร `Navigate()` นี้</p>
+                    <pre class="bg-gray-800 text-white p-3 rounded-md text-sm mb-4"><code>Navigate(Screen2, ScreenTransition.Fade)</code></pre>
+                    <p class="text-gray-600 mb-4">เมื่อคุณกดปุ่มด้านล่าง แอปจะเปลี่ยนไปหน้าจอที่ 2 โดยใช้เอฟเฟกต์ Fade</p>
+                    <button class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300">กดเพื่อดูตัวอย่าง</button>
+                    <p class="text-sm text-gray-400 mt-2">*(ปุ่มนี้เป็นตัวอย่าง ไม่มีผลจริง)*</p>
                 </div>
             </div>
         </section>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตัวอย่างสูตรพื้นฐาน Power Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Serene Neutrals -->
+    <!-- Application Structure Plan: เว็บแอปพลิเคชันนี้ถูกออกแบบเป็นหน้าเดียว (SPA) เพื่อสาธิตการทำงานของสูตรพื้นฐานใน Power Apps โครงสร้างประกอบด้วยหลายส่วนหลักที่สามารถเลื่อนลงมาดูได้ แต่ละส่วนจะแสดงตัวอย่างการใช้งานสูตรในหมวดหมู่ที่แตกต่างกัน (นำทาง, จัดการข้อมูล, ตัวแปร, แสดงผล/กรอง, เงื่อนไข) โดยใช้ UI ที่เรียบง่าย เช่น ปุ่ม, ตาราง, และช่องข้อความ เพื่อให้ผู้ใช้สามารถทดลองและเห็นผลลัพธ์ได้ทันที การออกแบบนี้มุ่งเน้นไปที่การสร้างประสบการณ์การเรียนรู้เชิงปฏิบัติที่เข้าใจง่าย ไม่ซับซ้อน และสะท้อนการทำงานจริงของ Power Apps -->
+    <!-- Visualization & Content Choices: ทุกส่วนของแอปใช้ HTML และ JavaScript ล้วนๆ เพื่อสร้างปฏิสัมพันธ์: 1. ส่วนนำทาง -> Goal: Demonstrate navigation -> Viz: Show/hide div -> Interaction: Click button to switch "screens" -> Justification: Directly simulates the Navigate() formula without a full page reload. 2. จัดการข้อมูล -> Goal: Demonstrate data manipulation -> Viz: HTML table and form -> Interaction: Input data and click buttons to Collect/ClearCollect/Patch JavaScript array acting as a database -> Justification: Provides a hands-on experience with CRUD operations. 3. ตัวแปร -> Goal: Explain variables -> Viz: Text input and display area -> Interaction: Type text and click a button to store in a JS variable and display it -> Justification: Clearly shows the concept of a global variable. 4. แสดงผลและกรองข้อมูล -> Goal: Demonstrate data filtering -> Viz: Dynamic HTML table -> Interaction: Use text inputs to filter and sort the table content -> Justification: Allows users to see the effects of Filter(), Search(), and Sort() in real-time. 5. เงื่อนไข -> Goal: Demonstrate conditional logic -> Viz: Simple form with text input -> Interaction: Check if input is blank and show a message -> Justification: Illustrates the If() and IsBlank() functions in a practical scenario. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f8f7f4;
+            color: #4a4a4a;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto px-6 py-8 md:py-12 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-amber-800 mb-2">ตัวอย่างสูตรพื้นฐาน Power Apps</h1>
+            <p class="text-lg text-gray-600">เรียนรู้การใช้งานสูตรหลักๆ ของ Power Apps ผ่านแอปพลิเคชันเชิงโต้ตอบ</p>
+        </header>
+
+        <section id="navigation-section" class="bg-white p-8 rounded-lg shadow-xl mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">1. สูตรสำหรับการนำทาง (Navigation)</h2>
+            <p class="text-gray-600 mb-6">ลองคลิกปุ่มเพื่อเปลี่ยนหน้าจอ แอปพลิเคชันนี้จะจำลองการทำงานของสูตร `Navigate()`</p>
+            <div id="screen1" class="bg-gray-50 p-6 rounded-lg text-center border-2 border-dashed border-gray-300">
+                <h3 class="text-xl font-semibold mb-4">หน้าจอที่ 1</h3>
+                <button onclick="navigate('screen2', 'fade')" class="bg-amber-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-amber-700 transition-colors duration-300">
+                    ไปยังหน้าจอที่ 2
+                </button>
+            </div>
+            <div id="screen2" class="bg-gray-50 p-6 rounded-lg text-center border-2 border-dashed border-gray-300 hidden">
+                <h3 class="text-xl font-semibold mb-4">หน้าจอที่ 2</h3>
+                <button onclick="navigate('screen1', 'fade')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 transition-colors duration-300">
+                    ย้อนกลับไปหน้าจอที่ 1
+                </button>
+            </div>
+        </section>
+
+        <section id="data-section" class="bg-white p-8 rounded-lg shadow-xl mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">2. สูตรสำหรับการจัดการข้อมูล (Data Manipulation)</h2>
+            <p class="text-gray-600 mb-6">ป้อนข้อมูลลงในฟอร์มเพื่อทดลองใช้สูตร `Collect`, `ClearCollect` และ `Patch` กับข้อมูลนักศึกษา</p>
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <input type="text" id="student-id" placeholder="รหัสนักศึกษา (เช่น 68001)" class="w-full p-2 border border-gray-300 rounded-md">
+                <input type="text" id="student-name" placeholder="ชื่อนักศึกษา" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <button onclick="collectData()" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-300 text-sm">
+                    Collect()
+                </button>
+                <button onclick="clearCollectData()" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors duration-300 text-sm">
+                    ClearCollect()
+                </button>
+                <button onclick="patchData()" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors duration-300 text-sm">
+                    Patch()
+                </button>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">ข้อมูลนักศึกษา:</h3>
+                <table class="w-full text-left table-auto">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-700">
+                            <th class="p-2 rounded-tl-lg">รหัสนักศึกษา</th>
+                            <th class="p-2 rounded-tr-lg">ชื่อนักศึกษา</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="variable-section" class="bg-white p-8 rounded-lg shadow-xl mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">3. สูตรสำหรับการทำงานกับตัวแปร (Variable Functions)</h2>
+            <p class="text-gray-600 mb-6">ลองป้อนชื่อของคุณแล้วกดปุ่ม เพื่อดูว่า `Set()` ทำงานอย่างไรกับตัวแปรทั่วโลก</p>
+            <div class="grid md:grid-cols-2 gap-4 items-center">
+                <input type="text" id="username-input" placeholder="ป้อนชื่อของคุณ" class="w-full p-2 border border-gray-300 rounded-md">
+                <button onclick="setUsername()" class="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors duration-300 text-sm">
+                    Set(userName, ... )
+                </button>
+            </div>
+            <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">ตัวแปร `userName` มีค่า:</h3>
+                <p id="username-display" class="text-lg text-gray-700 font-bold">-</p>
+            </div>
+        </section>
+
+        <section id="filter-section" class="bg-white p-8 rounded-lg shadow-xl mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">4. สูตรสำหรับการแสดงผลและกรองข้อมูล (Display & Filtering)</h2>
+            <p class="text-gray-600 mb-6">ใช้ช่องค้นหาด้านล่างเพื่อทดลองใช้สูตร `Filter()`, `Search()`, และ `Sort()`</p>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <input type="text" id="filter-input" placeholder="ค้นหาด้วยชื่อหรือสาขา" class="w-full p-2 border border-gray-300 rounded-md">
+                <div class="flex gap-2">
+                    <button onclick="applyFilter()" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-300 text-sm">
+                        Filter/Search
+                    </button>
+                    <button onclick="applySort('Name')" class="bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300 text-sm">
+                        Sort (ชื่อ)
+                    </button>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <table class="w-full text-left table-auto">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-700">
+                            <th class="p-2 rounded-tl-lg">รหัสนักศึกษา</th>
+                            <th class="p-2">ชื่อ</th>
+                            <th class="p-2 rounded-tr-lg">สาขา</th>
+                        </tr>
+                    </thead>
+                    <tbody id="filtered-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="conditional-section" class="bg-white p-8 rounded-lg shadow-xl mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">5. สูตรสำหรับการตรวจสอบเงื่อนไข (Conditional Logic)</h2>
+            <p class="text-gray-600 mb-6">สูตร `If()` และ `IsBlank()` ใช้ตรวจสอบเงื่อนไข ลองป้อนข้อความหรือไม่ป้อนอะไรเลย แล้วกดปุ่ม</p>
+            <div class="grid md:grid-cols-2 gap-4 items-center">
+                <input type="text" id="condition-input" placeholder="ป้อนข้อความ" class="w-full p-2 border border-gray-300 rounded-md">
+                <button onclick="checkCondition()" class="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors duration-300 text-sm">
+                    If(IsBlank(), ...)
+                </button>
+            </div>
+            <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">ผลลัพธ์:</h3>
+                <p id="condition-result" class="text-lg text-gray-700 font-bold">-</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let studentsData = [
+                { id: "68001", name: "สมชาย รักเรียน", major: "IT" },
+                { id: "68002", name: "สมหญิง ตั้งใจ", major: "Business" },
+                { id: "68003", name: "มานะ ขยัน", major: "IT" },
+                { id: "68004", name: "ปิติ ดีใจ", major: "Design" },
+                { id: "68005", name: "อรุณ สุขสันต์", major: "Business" }
+            ];
+            let globalUserName = '';
+
+            function renderStudentTable(data, elementId) {
+                const tableBody = document.getElementById(elementId);
+                tableBody.innerHTML = '';
+                data.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.className = 'border-t border-gray-200';
+                    row.innerHTML = `<td class="p-2">${student.id}</td><td class="p-2">${student.name}</td><td class="p-2">${student.major || ''}</td>`;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            renderStudentTable(studentsData, 'student-table-body');
+            renderStudentTable(studentsData, 'filtered-table-body');
+
+            window.navigate = function(screenId) {
+                document.getElementById('screen1').classList.add('hidden');
+                document.getElementById('screen2').classList.add('hidden');
+                document.getElementById(screenId).classList.remove('hidden');
+            };
+
+            window.collectData = function() {
+                const id = document.getElementById('student-id').value;
+                const name = document.getElementById('student-name').value;
+                if (id && name) {
+                    studentsData.push({ id, name });
+                    renderStudentTable(studentsData, 'student-table-body');
+                    document.getElementById('student-id').value = '';
+                    document.getElementById('student-name').value = '';
+                }
+            };
+
+            window.clearCollectData = function() {
+                studentsData = [];
+                const id = document.getElementById('student-id').value;
+                const name = document.getElementById('student-name').value;
+                if (id && name) {
+                    studentsData.push({ id, name });
+                }
+                renderStudentTable(studentsData, 'student-table-body');
+                document.getElementById('student-id').value = '';
+                document.getElementById('student-name').value = '';
+            };
+
+            window.patchData = function() {
+                const id = document.getElementById('student-id').value;
+                const name = document.getElementById('student-name').value;
+                if (id && name) {
+                    const recordIndex = studentsData.findIndex(s => s.id === id);
+                    if (recordIndex !== -1) {
+                        studentsData[recordIndex].name = name;
+                        renderStudentTable(studentsData, 'student-table-body');
+                    }
+                }
+            };
+
+            window.setUsername = function() {
+                const input = document.getElementById('username-input');
+                globalUserName = input.value;
+                document.getElementById('username-display').textContent = globalUserName || '-';
+            };
+
+            window.applyFilter = function() {
+                const filterText = document.getElementById('filter-input').value.toLowerCase();
+                const filteredData = studentsData.filter(s =>
+                    s.name.toLowerCase().includes(filterText) ||
+                    s.major.toLowerCase().includes(filterText)
+                );
+                renderStudentTable(filteredData, 'filtered-table-body');
+            };
+
+            window.applySort = function(column) {
+                const sortedData = [...studentsData].sort((a, b) => a[column.toLowerCase()].localeCompare(b[column.toLowerCase()]));
+                renderStudentTable(sortedData, 'filtered-table-body');
+            };
+
+            window.checkCondition = function() {
+                const input = document.getElementById('condition-input');
+                const resultElement = document.getElementById('condition-result');
+                if (input.value === "") {
+                    resultElement.textContent = "ช่องข้อความว่างเปล่า: กรุณากรอกข้อมูล";
+                    resultElement.classList.remove('text-green-600');
+                    resultElement.classList.add('text-red-600');
+                } else {
+                    resultElement.textContent = "ช่องข้อความไม่ว่าง: ข้อมูลถูกต้อง";
+                    resultElement.classList.remove('text-red-600');
+                    resultElement.classList.add('text-green-600');
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>
+
