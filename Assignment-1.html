@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทเรียนเชิงโต้ตอบ: การจัดการข้อมูลใน Power Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Serene Neutrals -->
+    <!-- Application Structure Plan: ผมได้ออกแบบเว็บแอปพลิเคชันนี้ให้เป็นบทเรียนเชิงโต้ตอบแบบหน้าเดียว โดยแบ่งหน้าจอเป็นสองส่วนหลัก: ด้านซ้ายคือแผงคำแนะนำ (Instructions Panel) ที่จะแสดงขั้นตอนการทำแบบฝึกหัดทีละขั้น และด้านขวาคือหน้าจอจำลอง (Simulator) ที่จะแสดงผลลัพธ์ของการกระทำในแต่ละขั้นตอน ผู้ใช้สามารถกดปุ่ม "ถัดไป" หรือ "ย้อนกลับ" เพื่อเรียนรู้ตามลำดับขั้น โครงสร้างนี้ถูกเลือกเพื่อสร้างประสบการณ์การเรียนรู้ที่เหมือนกับการทำตามคู่มือจริง ช่วยให้ผู้ใช้จดจ่อกับแต่ละขั้นตอนและเห็นผลลัพธ์ได้ทันที -->
+    <!-- Visualization & Content Choices: 1. ขั้นตอนการสอน -> Goal: Organize -> Viz: Stepped Navigation List (HTML/CSS) -> Interaction: คลิกปุ่มเพื่อเปลี่ยนขั้นตอน -> Justification: นำเสนอเนื้อหาที่เป็นลำดับขั้นได้ดีที่สุด 2. หน้าจอจำลอง Power Apps -> Goal: Inform/Demonstrate -> Viz: Styled HTML elements (divs, inputs, buttons, table) -> Interaction: ผู้ใช้สามารถพิมพ์ในช่อง input และคลิกปุ่มต่างๆ เพื่อดูผลลัพธ์การทำงานของสูตรที่จำลองขึ้น -> Justification: เป็นวิธีที่ดีที่สุดในการสาธิตการทำงานของ UI และสูตรต่างๆ โดยไม่ต้องใช้ Power Apps จริง 3. การแสดงข้อมูล Collection -> Goal: Inform -> Viz: HTML Table -> Interaction: ตารางจะอัปเดตข้อมูลอัตโนมัติเมื่อผู้ใช้กดปุ่มที่เกี่ยวข้องกับสูตร Collect, ClearCollect, Patch -> Justification: แสดงผลการเปลี่ยนแปลงของข้อมูลได้ชัดเจนและตรงไปตรงมา -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f4f4f5;
+            color: #1f2937;
+        }
+        .instruction-panel {
+            scrollbar-width: thin;
+            scrollbar-color: #a1a1aa #f4f4f5;
+        }
+        .instruction-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+        .instruction-panel::-webkit-scrollbar-track {
+            background: #f4f4f5;
+        }
+        .instruction-panel::-webkit-scrollbar-thumb {
+            background-color: #a1a1aa;
+            border-radius: 10px;
+            border: 3px solid #f4f4f5;
+        }
+        .sim-control {
+            border: 1px solid #d1d5db;
+            background-color: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .sim-button {
+            border: 1px solid #d1d5db;
+            background-color: #f9fafb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .sim-button:hover {
+            background-color: #f3f4f6;
+        }
+        code {
+            background-color: #1f2937;
+            color: #f9fafb;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+        .step-active {
+             background-color: #eab308;
+             color: white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-white shadow-md w-full">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <h1 class="text-xl md:text-2xl font-bold text-amber-600">บทเรียน: การจัดการข้อมูลใน Power Apps</h1>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+            <div class="flex flex-col lg:flex-row gap-8 h-full">
+
+                <!-- Instruction Panel -->
+                <div class="w-full lg:w-1/3 xl:w-1/4 flex flex-col bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b">
+                        <h2 class="text-lg font-bold text-gray-800">ขั้นตอนการสร้างแอป</h2>
+                         <div class="flex items-center space-x-2 mt-2 text-sm text-gray-500">
+                            <span>ขั้นตอนที่</span>
+                            <span id="step-counter" class="font-bold text-lg text-amber-600">1</span>
+                            <span>/ 5</span>
+                        </div>
+                    </div>
+                    <div id="instruction-content" class="flex-grow p-6 overflow-y-auto instruction-panel">
+                        <!-- Instructions will be dynamically loaded here -->
+                    </div>
+                    <div class="p-4 border-t bg-gray-50 rounded-b-lg">
+                        <div class="flex justify-between">
+                            <button id="prev-step" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed">← ย้อนกลับ</button>
+                            <button id="next-step" class="px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed">ถัดไป →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulator Panel -->
+                <div class="w-full lg:w-2/3 xl:w-3/4 flex-grow bg-white rounded-lg shadow-lg p-4 md:p-8 flex items-center justify-center">
+                    <div id="simulator-canvas" class="w-full h-full max-w-4xl bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 transition-all duration-500">
+                        <!-- Simulator content will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentStep = 1;
+            const totalSteps = 5;
+
+            let colStudents = [];
+
+            const stepCounter = document.getElementById('step-counter');
+            const instructionContent = document.getElementById('instruction-content');
+            const simulatorCanvas = document.getElementById('simulator-canvas');
+            const prevButton = document.getElementById('prev-step');
+            const nextButton = document.getElementById('next-step');
+
+            const steps = [
+                { // Step 1
+                    title: "ขั้นตอนที่ 1: เตรียมหน้าจอและ UI",
+                    instructions: `
+                        <p class="mb-4">ในขั้นตอนนี้ เราจะเริ่มต้นด้วยการสร้างหน้าจอเปล่าและเพิ่มส่วนประกอบ (Controls) ที่จำเป็นสำหรับการจัดการข้อมูล</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>สร้างหน้าจอใหม่ชื่อ <code>Screen_Data</code></li>
+                            <li>เพิ่ม <strong>Label</strong> สำหรับ "รหัสนักศึกษา", "ชื่อนักศึกษา", และ "สาขา"</li>
+                            <li>เพิ่ม <strong>Text input</strong> 3 ช่องสำหรับรับข้อมูล</li>
+                            <li>เพิ่ม <strong>Button</strong> 3 ปุ่มสำหรับ "บันทึก", "สร้างใหม่", และ "แก้ไข"</li>
+                            <li>เพิ่ม <strong>Gallery</strong> 1 อันสำหรับแสดงผลข้อมูล</li>
+                        </ul>
+                        <p class="mt-4 text-sm text-gray-500">กด "ถัดไป" เพื่อดูผลลัพธ์ของการเพิ่ม Controls เหล่านี้</p>
+                    `,
+                    renderSimulator: () => {
+                        simulatorCanvas.innerHTML = `<div class="flex items-center justify-center h-full text-gray-500">หน้าจอ Screen_Data (ว่างเปล่า)</div>`;
+                    }
+                },
+                { // Step 2
+                    title: "ขั้นตอนที่ 2: สร้างและเชื่อมต่อ Collection",
+                    instructions: `
+                        <p class="mb-4"><strong>Collection</strong> คือตารางข้อมูลชั่วคราวในแอป เราจะสร้าง Collection ชื่อ <code>colStudents</code> และแสดงผลใน Gallery</p>
+                        <p class="font-semibold mb-2">1. สร้าง Collection เริ่มต้น:</p>
+                        <p class="mb-4">ใช้สูตรนี้ใน Property <code>OnVisible</code> ของหน้าจอ เพื่อให้แอปสร้างข้อมูลเริ่มต้นทุกครั้งที่เปิดหน้านี้</p>
+                        <code>ClearCollect(colStudents, {ID:"68001", Name:"สมชาย รักเรียน", Major:"IT"})</code>
+                        <p class="font-semibold mt-4 mb-2">2. เชื่อมต่อ Gallery:</p>
+                        <p>ตั้งค่า Property <code>Items</code> ของ Gallery ให้เป็น <code>colStudents</code></p>
+                        <p class="mt-4 text-sm text-gray-500">เมื่อเราจำลองการเปิดหน้านี้ Gallery จะแสดงข้อมูลเริ่มต้นทันที</p>
+                    `,
+                    renderSimulator: () => {
+                        colStudents = [{ID:"68001", Name:"สมชาย รักเรียน", Major:"IT"}];
+                        renderFullUI();
+                    }
+                },
+                { // Step 3
+                    title: "ขั้นตอนที่ 3: เพิ่มข้อมูลด้วย Collect()",
+                    instructions: `
+                        <p class="mb-4">ตอนนี้เราจะทำให้ปุ่ม <strong>"บันทึกข้อมูล"</strong> สามารถเพิ่มข้อมูลใหม่ลงใน Collection ได้</p>
+                        <p class="font-semibold mb-2">ใช้สูตรนี้ใน Property <code>OnSelect</code> ของปุ่ม "บันทึกข้อมูล":</p>
+                        <code>Collect(colStudents, { ID: ..., Name: ..., Major: ... }); Reset(TextInput...);</code>
+                        <p class="mt-4"><strong>คำอธิบาย:</strong></p>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li><code>Collect()</code>: เพิ่มข้อมูลใหม่ต่อท้ายใน Collection</li>
+                            <li><code>Reset()</code>: ล้างค่าในช่อง Text input หลังบันทึก</li>
+                        </ul>
+                        <p class="mt-4 font-semibold">ลองกรอกข้อมูลในฟอร์มจำลองแล้วกดปุ่ม "บันทึกข้อมูล"</p>
+                    `,
+                    renderSimulator: () => {
+                         renderFullUI();
+                         document.getElementById('sim-save-btn').disabled = false;
+                    }
+                },
+                { // Step 4
+                    title: "ขั้นตอนที่ 4: ล้างและสร้างข้อมูลใหม่",
+                    instructions: `
+                        <p class="mb-4">ต่อไปคือการทำให้ปุ่ม <strong>"สร้างข้อมูลใหม่"</strong> สามารถล้างข้อมูลทั้งหมดและกลับไปที่ข้อมูลเริ่มต้นได้</p>
+                         <p class="font-semibold mb-2">ใช้สูตรนี้ใน Property <code>OnSelect</code> ของปุ่ม "สร้างข้อมูลใหม่":</p>
+                        <code>ClearCollect(colStudents, {ID:"68001", ...}); Reset(TextInput...);</code>
+                         <p class="mt-4"><strong>คำอธิบาย:</strong></p>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li><code>ClearCollect()</code>: ล้างข้อมูลเก่าทั้งหมด แล้วเพิ่มข้อมูลใหม่ที่ระบุเข้าไป</li>
+                        </ul>
+                         <p class="mt-4 font-semibold">ลองเพิ่มข้อมูลหลายๆ รายการ แล้วกดปุ่ม "สร้างข้อมูลใหม่" เพื่อดูผลลัพธ์</p>
+                    `,
+                    renderSimulator: () => {
+                        renderFullUI();
+                        document.getElementById('sim-save-btn').disabled = false;
+                        document.getElementById('sim-reset-btn').disabled = false;
+                    }
+                },
+                { // Step 5
+                    title: "ขั้นตอนที่ 5: แก้ไขข้อมูลด้วย Patch()",
+                    instructions: `
+                        <p class="mb-4">สุดท้าย เราจะทำให้ปุ่ม <strong>"แก้ไขข้อมูล"</strong> สามารถอัปเดตข้อมูลที่มีอยู่ได้</p>
+                        <p class="font-semibold mb-2">ใช้สูตรนี้ใน Property <code>OnSelect</code> ของปุ่ม "แก้ไขข้อมูล":</p>
+                        <code>Patch(colStudents, LookUp(colStudents, ID=...), { Name: ..., Major: ... })</code>
+                        <p class="mt-4"><strong>คำอธิบาย:</strong></p>
+                         <ul class="list-disc list-inside text-sm space-y-1">
+                            <li><code>LookUp()</code>: ค้นหารายการแรกที่ตรงกับเงื่อนไข (ในที่นี้คือ ID)</li>
+                            <li><code>Patch()</code>: อัปเดตข้อมูลในรายการที่ค้นหาเจอ</li>
+                        </ul>
+                        <p class="mt-4 font-semibold">ลองกรอกรหัสนักศึกษา "68001" พร้อมชื่อและสาขาใหม่ แล้วกด "แก้ไขข้อมูล"</p>
+                    `,
+                    renderSimulator: () => {
+                        renderFullUI();
+                        document.getElementById('sim-save-btn').disabled = false;
+                        document.getElementById('sim-reset-btn').disabled = false;
+                        document.getElementById('sim-edit-btn').disabled = false;
+                    }
+                }
+            ];
+
+            function renderFullUI() {
+                simulatorCanvas.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="text-sm font-medium text-gray-700">รหัสนักศึกษา</label>
+                                <input type="text" id="sim-id" class="sim-control w-full mt-1" placeholder="6800X">
+                            </div>
+                             <div>
+                                <label class="text-sm font-medium text-gray-700">ชื่อนักศึกษา</label>
+                                <input type="text" id="sim-name" class="sim-control w-full mt-1" placeholder="ชื่อ-นามสกุล">
+                            </div>
+                             <div>
+                                <label class="text-sm font-medium text-gray-700">สาขา</label>
+                                <input type="text" id="sim-major" class="sim-control w-full mt-1" placeholder="IT, Business">
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button id="sim-save-btn" class="sim-button text-blue-700" disabled>บันทึกข้อมูล</button>
+                            <button id="sim-reset-btn" class="sim-button text-red-700" disabled>สร้างข้อมูลใหม่</button>
+                            <button id="sim-edit-btn" class="sim-button text-green-700" disabled>แก้ไขข้อมูล</button>
+                        </div>
+                        <div class="bg-white p-2 rounded-md border">
+                             <h3 class="font-semibold mb-2 p-2">Gallery: colStudents</h3>
+                             <table class="w-full text-sm text-left">
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th class="p-2">ID</th>
+                                        <th class="p-2">Name</th>
+                                        <th class="p-2">Major</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="gallery-body"></tbody>
+                             </table>
+                        </div>
+                    </div>
+                `;
+                renderGallery();
+                attachSimListeners();
+            }
+
+            function renderGallery() {
+                const galleryBody = document.getElementById('gallery-body');
+                if (!galleryBody) return;
+                galleryBody.innerHTML = '';
+                if(colStudents.length === 0){
+                    galleryBody.innerHTML = '<tr><td colspan="3" class="text-center p-4 text-gray-500">ไม่มีข้อมูล</td></tr>';
+                    return;
+                }
+                colStudents.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.className = 'border-t';
+                    row.innerHTML = `
+                        <td class="p-2">${student.ID}</td>
+                        <td class="p-2">${student.Name}</td>
+                        <td class="p-2">${student.Major}</td>
+                    `;
+                    galleryBody.appendChild(row);
+                });
+            }
+            
+            function attachSimListeners() {
+                const saveBtn = document.getElementById('sim-save-btn');
+                const resetBtn = document.getElementById('sim-reset-btn');
+                const editBtn = document.getElementById('sim-edit-btn');
+
+                if(saveBtn) saveBtn.onclick = () => {
+                    const id = document.getElementById('sim-id').value;
+                    const name = document.getElementById('sim-name').value;
+                    const major = document.getElementById('sim-major').value;
+                    if (id && name && major) {
+                        colStudents.push({ ID: id, Name: name, Major: major });
+                        renderGallery();
+                        document.getElementById('sim-id').value = '';
+                        document.getElementById('sim-name').value = '';
+                        document.getElementById('sim-major').value = '';
+                    } else {
+                        alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                    }
+                };
+
+                if(resetBtn) resetBtn.onclick = () => {
+                    colStudents = [{ID:"68001", Name:"สมชาย รักเรียน", Major:"IT"}];
+                    renderGallery();
+                };
+
+                if(editBtn) editBtn.onclick = () => {
+                     const id = document.getElementById('sim-id').value;
+                    const name = document.getElementById('sim-name').value;
+                    const major = document.getElementById('sim-major').value;
+                     if (id && name && major) {
+                        const index = colStudents.findIndex(s => s.ID === id);
+                        if (index !== -1) {
+                            colStudents[index] = { ...colStudents[index], Name: name, Major: major };
+                            renderGallery();
+                            document.getElementById('sim-id').value = '';
+                            document.getElementById('sim-name').value = '';
+                            document.getElementById('sim-major').value = '';
+                        } else {
+                            alert('ไม่พบรหัสนักศึกษาที่ต้องการแก้ไข');
+                        }
+                    } else {
+                        alert('กรุณากรอกข้อมูลให้ครบทุกช่องเพื่อแก้ไข');
+                    }
+                };
+            }
+
+
+            function renderStep(step) {
+                const stepData = steps[step - 1];
+                stepCounter.textContent = step;
+                instructionContent.innerHTML = `<h3 class="text-xl font-bold mb-4 text-gray-900">${stepData.title}</h3>${stepData.instructions}`;
+                stepData.renderSimulator();
+
+                prevButton.disabled = step === 1;
+                nextButton.disabled = step === totalSteps;
+            }
+
+            prevButton.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    renderStep(currentStep);
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    renderStep(currentStep);
+                }
+            });
+
+            renderStep(currentStep);
+        });
+    </script>
+</body>
+</html>

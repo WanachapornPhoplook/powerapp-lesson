@@ -70,6 +70,7 @@
                 <a href="#overview" class="nav-link pb-1 border-b-2 border-transparent">ภาพรวม</a>
                 <a href="#studio" class="nav-link pb-1 border-b-2 border-transparent">สตูดิโอ</a>
                 <a href="#practice" class="nav-link pb-1 border-b-2 border-transparent">ภาคปฏิบัติ</a>
+				<a href="#formulas" class="nav-link pb-1 border-b-2 border-transparent">Formulas</a>	
                 <a href="#workshop" class="nav-link pb-1 border-b-2 border-transparent">Workshop</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
@@ -80,6 +81,7 @@
             <a href="#overview" class="block py-2 text-gray-700">ภาพรวม</a>
             <a href="#studio" class="block py-2 text-gray-700">สตูดิโอ</a>
             <a href="#practice" class="block py-2 text-gray-700">ภาคปฏิบัติ</a>
+			<a href="#formulas" class="block py-2 text-gray-700">Formulas</a>
             <a href="#workshop" class="block py-2 text-gray-700">Workshop</a>
         </div>
     </header>
@@ -94,7 +96,7 @@
         <section id="overview" class="mb-16 scroll-mt-24">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">Power Platform คืออะไร?</h3>
             <p class="text-center text-gray-600 mb-8">คือชุดเครื่องมือ Low-Code จาก Microsoft ที่ช่วยให้ทุกคนสร้างโซลูชันทางธุรกิจได้อย่างรวดเร็ว ประกอบด้วยองค์ประกอบหลัก 4 อย่าง</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <h4 class="font-bold text-xl mb-2 text-blue-600">Power Apps</h4>
                     <p class="text-gray-600">เครื่องมือสำหรับสร้างแอปพลิเคชันทางธุรกิจที่กำหนดเองได้โดยไม่ต้องเขียนโค้ดซับซ้อน</p>
@@ -107,10 +109,7 @@
                     <h4 class="font-bold text-xl mb-2 text-yellow-600">Power BI</h4>
                     <p class="text-gray-600">เครื่องมือสำหรับวิเคราะห์ข้อมูลและสร้าง Dashboard เพื่อแสดงผลข้อมูลเชิงลึก</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h4 class="font-bold text-xl mb-2 text-indigo-600">Power Virtual Agents</h4>
-                    <p class="text-gray-600">เครื่องมือสำหรับสร้าง Chatbot อัจฉริยะเพื่อตอบคำถามและให้บริการลูกค้า</p>
-                </div>
+               
             </div>
         </section>
 
@@ -189,6 +188,83 @@
             </div>
         </section>
 		<section id="formulas" class="mb-16 scroll-mt-24">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula: หัวใจของการสร้างแอป</h3>
+            <p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป ลองดูตัวอย่างสูตรพื้นฐานที่เราจะใช้ในการสร้างแอป</p>
+            <div class="bg-white p-8 rounded-lg shadow-xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">สูตรพื้นฐานที่ต้องรู้</h2>
+
+                <!-- หมวดหมู่ที่ 1: การควบคุมการทำงาน -->
+                <div class="accordion-item border-b border-gray-200">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
+                        <span class="text-xl font-semibold text-gray-700">การควบคุมการทำงาน (Flow Control)</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <div class="mb-4">
+                                <h3 class="text-lg font-bold">If() และ Switch()</h3>
+                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับกำหนดเงื่อนไขในการทำงานของแอป</p>
+                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>If(IsBlank(TextInput1.Text), Notify("กรุณาป้อนข้อมูล"), Navigate(Screen2))</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- หมวดหมู่ที่ 2: การจัดการข้อมูล -->
+                <div class="accordion-item border-b border-gray-200">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
+                        <span class="text-xl font-semibold text-gray-700">การจัดการข้อมูล (Data Manipulation)</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <div class="mb-4">
+                                <h3 class="text-lg font-bold">Collect(), ClearCollect(), Patch()</h3>
+                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับเพิ่ม, แก้ไข, ลบข้อมูลใน Collection หรือแหล่งข้อมูล</p>
+                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>ClearCollect(colProducts, {ID: 1, Name: "Monitor", Price: 3500})
+Patch(colProducts, LookUp(colProducts, ID = 1), {Price: 4000})</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- หมวดหมู่ที่ 3: การค้นหาและกรองข้อมูล -->
+                <div class="accordion-item border-b border-gray-200">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
+                        <span class="text-xl font-semibold text-gray-700">การค้นหาและกรองข้อมูล (Filtering & Lookup)</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <div class="mb-4">
+                                <h3 class="text-lg font-bold">Filter(), Search(), LookUp() และ Sort()</h3>
+                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับจัดการข้อมูลในชุดข้อมูลให้ตรงตามเงื่อนไขที่ต้องการ</p>
+                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>Filter(colProducts, Price > 1000)
+Sort(Search(colProducts, TextInput1.Text, "Name"), Name, SortOrder.Ascending)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- หมวดหมู่ที่ 4: การทำงานกับตัวแปร -->
+                <div class="accordion-item">
+                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
+                        <span class="text-xl font-semibold text-gray-700">การทำงานกับตัวแปร (Variables)</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-gray-50 rounded-b-md">
+                            <div class="mb-4">
+                                <h3 class="text-lg font-bold">Set() และ UpdateContext()</h3>
+                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับสร้างและอัปเดตตัวแปรเพื่อเก็บค่าต่างๆ ในแอปพลิเคชัน</p>
+                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>Set(varSelectedProduct, ThisItem)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula: หัวใจของการสร้างแอป</h3>
             <p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป</p>
             <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg shadow-lg">

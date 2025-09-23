@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สำรวจหน้าจอ Power Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Power Apps Inspired -->
+    <!-- Application Structure Plan: เว็บแอปพลิเคชันนี้ถูกออกแบบให้เป็นหน้าจอจำลอง (Mockup) ของ Power Apps Homepage เพื่อสร้างประสบการณ์การเรียนรู้ที่สมจริงและมีบริบท ผู้ใช้สามารถคลิกที่องค์ประกอบต่างๆ บนหน้าจอ เช่น เมนู, ปุ่ม, หรือการ์ด เพื่อเปิดหน้าต่าง Modal ที่แสดงคำอธิบายโดยละเอียดของส่วนนั้นๆ โครงสร้างนี้ถูกเลือกเพราะเป็นวิธีที่มีประสิทธิภาพที่สุดในการสอนเกี่ยวกับ User Interface โดยให้ผู้ใช้สำรวจและเรียนรู้ไปพร้อมกับการมองเห็นตำแหน่งของฟังก์ชันจริง -->
+    <!-- Visualization & Content Choices: เนื้อหาจากเอกสารคำอธิบายถูกแปลงเป็นองค์ประกอบเชิงโต้ตอบ: 1. โครงสร้างหน้าจอทั้งหมด -> Goal: Organize/Inform -> Viz/Presentation: Interactive Mockup (HTML/CSS) -> Interaction: คลิกที่องค์ประกอบต่างๆ เพื่อเปิด Modal -> Justification: สร้างการเรียนรู้เชิงบริบท (Contextual Learning) ทำให้เข้าใจง่ายและจดจำได้ดีกว่าการอ่าน 2. คำอธิบายแต่ละส่วน -> Goal: Inform -> Viz/Presentation: Modals (Pop-ups) -> Interaction: คลิกเปิด/ปิด -> Justification: นำเสนอข้อมูล chi tiết on-demand โดยไม่ทำให้หน้าจอหลักรก -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Left Sidebar -->
+        <aside class="w-64 bg-gray-50 p-4 space-y-4 hidden md:flex md:flex-col shadow-lg">
+            <h1 class="text-2xl font-bold text-purple-700">Power Apps</h1>
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li><button data-target="home" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>🏠</span><span class="ml-3">Home</span></button></li>
+                    <li><button data-target="create" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>✨</span><span class="ml-3">Create</span></button></li>
+                    <li><button data-target="learn" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>📚</span><span class="ml-3">Learn</span></button></li>
+                    <li><button data-target="apps" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors bg-purple-100 text-purple-800 font-semibold"><span>📱</span><span class="ml-3">Apps</span></button></li>
+                    <li><button data-target="aihub" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>🤖</span><span class="ml-3">AI hub</span></button></li>
+                    <li><button data-target="tables" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>🗂️</span><span class="ml-3">Tables</span></button></li>
+                    <li><button data-target="flows" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>🌊</span><span class="ml-3">Flows</span></button></li>
+                    <li><button data-target="solutions" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>🧩</span><span class="ml-3">Solutions</span></button></li>
+                    <li><button data-target="more" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>...</span><span class="ml-3">More</span></button></li>
+                </ul>
+            </nav>
+            <div>
+                 <button data-target="powerplatform" class="interactive-element w-full text-left flex items-center p-2 rounded-lg hover:bg-purple-100 transition-colors"><span>🌐</span><span class="ml-3">Power Platform</span></button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Top Bar -->
+            <header class="bg-purple-600 text-white p-4 flex justify-between items-center shadow-md">
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                    <button data-target="search-top" class="interactive-element flex items-center bg-purple-700 p-2 rounded-lg">
+                        <span>🔍</span>
+                        <span class="ml-2 hidden sm:block">Search</span>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button data-target="environment" class="interactive-element p-2 rounded-lg hover:bg-purple-700 transition-colors"><span>🌍 Environment</span></button>
+                    <button data-target="profile" class="interactive-element flex items-center space-x-2 p-2 rounded-lg hover:bg-purple-700 transition-colors">
+                        <span class="w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center font-bold">W</span>
+                        <span class="hidden lg:block">Wanachaporn P...</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="p-6 md:p-8">
+                <p class="text-sm text-gray-500 mb-8">คลิกที่ส่วนต่างๆ ของหน้าจอเพื่อดูคำอธิบาย</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <button data-target="copilot" class="interactive-element bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-left">
+                        <h3 class="font-bold text-lg text-purple-700">Start with Copilot</h3>
+                        <p class="text-sm text-gray-600 mt-2">สร้างแอปจากคำอธิบายด้วยภาษาปกติ</p>
+                    </button>
+                    <button data-target="data" class="interactive-element bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-left">
+                        <h3 class="font-bold text-lg text-purple-700">Start with data</h3>
+                        <p class="text-sm text-gray-600 mt-2">สร้างแอปจากข้อมูลที่มีอยู่</p>
+                    </button>
+                    <button data-target="pagedesign" class="interactive-element bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-left">
+                        <h3 class="font-bold text-lg text-purple-700">Start with a page design</h3>
+                        <p class="text-sm text-gray-600 mt-2">เลือกการออกแบบและ Layout</p>
+                    </button>
+                    <button data-target="template" class="interactive-element bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-left">
+                        <h3 class="font-bold text-lg text-purple-700">Start with an app template</h3>
+                        <p class="text-sm text-gray-600 mt-2">เริ่มต้นจากเทมเพลตพร้อมใช้</p>
+                    </button>
+                </div>
+
+                <div class="mt-10 bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex flex-wrap gap-4 items-center mb-4">
+                        <button data-target="myapps" class="interactive-element bg-purple-200 text-purple-800 font-semibold px-4 py-2 rounded-full text-sm">My apps</button>
+                        <button data-target="shared" class="interactive-element text-gray-600 font-semibold px-4 py-2 rounded-full text-sm hover:bg-gray-200">Shared with me</button>
+                        <button data-target="all" class="interactive-element text-gray-600 font-semibold px-4 py-2 rounded-full text-sm hover:bg-gray-200">All</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b text-sm text-gray-500">
+                                    <th class="p-2">Name</th>
+                                    <th class="p-2">Modified</th>
+                                    <th class="p-2">Owner</th>
+                                    <th class="p-2">Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-2">แอปจัดการสินค้าคงคลัง</td>
+                                    <td class="p-2">2 hours ago</td>
+                                    <td class="p-2">Wanachaporn P.</td>
+                                    <td class="p-2">Canvas</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-2">แอปอนุมัติวันลา</td>
+                                    <td class="p-2">Yesterday</td>
+                                    <td class="p-2">Wanachaporn P.</td>
+                                    <td class="p-2">Canvas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white rounded-lg shadow-2xl p-6 w-full max-w-md transform scale-95">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modal-title" class="text-2xl font-bold text-purple-700"></h2>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-800">&times;</button>
+            </div>
+            <p id="modal-description" class="text-gray-600"></p>
+        </div>
+    </div>
+
+    <!-- Modal Content Storage -->
+    <div class="hidden">
+        <div id="data-home">
+            <h2 class="font-bold">Home (บ้าน)</h2>
+            <p>หน้าจอหลักที่คุณเห็นอยู่นี้ เป็นแดชบอร์ดหลักสำหรับเริ่มต้นใช้งาน</p>
+        </div>
+        <div id="data-create">
+            <h2 class="font-bold">Create (สร้าง)</h2>
+            <p>เมนูสำหรับเริ่มต้นสร้างแอปพลิเคชันใหม่ ซึ่งมีตัวเลือกให้เลือกหลากหลาย เช่น สร้างจาก Copilot, ข้อมูล, หรือเทมเพลต</p>
+        </div>
+        <div id="data-learn">
+            <h2 class="font-bold">Learn (เรียนรู้)</h2>
+            <p>แหล่งรวมบทเรียน, คู่มือ และทัวร์นำชมเพื่อช่วยให้คุณเรียนรู้การใช้งาน Power Apps</p>
+        </div>
+         <div id="data-apps">
+            <h2 class="font-bold">Apps (แอป)</h2>
+            <p>แสดงรายการแอปพลิเคชันทั้งหมดที่คุณสามารถเข้าถึงได้ ทั้งแอปที่คุณสร้างเองและแอปที่ถูกแชร์มา</p>
+        </div>
+         <div id="data-aihub">
+            <h2 class="font-bold">AI hub</h2>
+            <p>เป็นเมนูสำหรับจัดการกับฟีเจอร์ที่เกี่ยวข้องกับ AI ใน Power Apps</p>
+        </div>
+         <div id="data-tables">
+            <h2 class="font-bold">Tables (ตาราง)</h2>
+            <p>ส่วนสำหรับจัดการตารางข้อมูลใน Dataverse ซึ่งเป็นฐานข้อมูลหลักของ Power Platform</p>
+        </div>
+         <div id="data-flows">
+            <h2 class="font-bold">Flows (โฟลว์)</h2>
+            <p>ลิงก์สำหรับเข้าสู่ Power Automate เพื่อสร้างและจัดการ Workflow อัตโนมัติที่ทำงานร่วมกับแอปของคุณ</p>
+        </div>
+         <div id="data-solutions">
+            <h2 class="font-bold">Solutions (โซลูชัน)</h2>
+            <p>สำหรับการจัดการชุดแอป, โฟลว์ และตารางที่รวมกันเป็นโซลูชันเพื่อการย้ายหรือติดตั้งใน Environment อื่นได้ง่ายขึ้น</p>
+        </div>
+         <div id="data-more">
+            <h2 class="font-bold">More (เพิ่มเติม)</h2>
+            <p>เมนูที่รวมเครื่องมือและบริการอื่นๆ ใน Power Platform เช่น Power Pages หรือ AI Builder</p>
+        </div>
+         <div id="data-powerplatform">
+            <h2 class="font-bold">Power Platform</h2>
+            <p>ลิงก์สำหรับเข้าถึงแดชบอร์ดหลักของ Power Platform เพื่อดูภาพรวมของบริการทั้งหมด</p>
+        </div>
+        <div id="data-search-top">
+            <h2 class="font-bold">ช่องค้นหา (Search)</h2>
+            <p>สำหรับค้นหาแอปพลิเคชัน, เทมเพลต, หรือข้อมูลต่างๆ ได้อย่างรวดเร็ว</p>
+        </div>
+        <div id="data-environment">
+            <h2 class="font-bold">Environment</h2>
+            <p>แสดงสภาพแวดล้อมการทำงานปัจจุบันของคุณ ซึ่งเปรียบเสมือนพื้นที่ทำงานที่แยกจากกัน คุณสามารถสลับไปมาระหว่าง Environment ที่มีได้ เช่น Development, Test, Production</p>
+        </div>
+        <div id="data-profile">
+            <h2 class="font-bold">โปรไฟล์ผู้ใช้</h2>
+            <p>แสดงชื่อและรูปโปรไฟล์ของคุณ และเป็นเมนูสำหรับจัดการการตั้งค่าบัญชีและออกจากระบบ</p>
+        </div>
+        <div id="data-copilot">
+            <h2 class="font-bold">Start with Copilot</h2>
+            <p>สร้างแอปจากคำอธิบายด้วยภาษาปกติ ให้ AI ช่วยออกแบบแอปตามที่คุณต้องการ</p>
+        </div>
+        <div id="data-data">
+            <h2 class="font-bold">Start with data</h2>
+            <p>สร้างแอปจากข้อมูลที่มีอยู่ เช่น ตารางใน Dataverse, ไฟล์ Excel, หรือแหล่งข้อมูลภายนอกอื่นๆ</p>
+        </div>
+        <div id="data-pagedesign">
+            <h2 class="font-bold">Start with a page design</h2>
+            <p>เริ่มต้นสร้างแอปโดยเลือกการออกแบบและ Layout ของหน้าจอเริ่มต้นที่คุณต้องการ</p>
+        </div>
+        <div id="data-template">
+            <h2 class="font-bold">Start with an app template</h2>
+            <p>เริ่มต้นจากเทมเพลตแอปพลิเคชันที่พร้อมใช้งาน ซึ่งสามารถนำมาปรับแก้ให้เข้ากับความต้องการของคุณได้</p>
+        </div>
+        <div id="data-myapps">
+            <h2 class="font-bold">My apps (แอปของฉัน)</h2>
+            <p>แสดงเฉพาะแอปที่คุณเป็นเจ้าของหรือเป็นผู้สร้าง</p>
+        </div>
+        <div id="data-shared">
+            <h2 class="font-bold">Shared with me (แชร์กับฉัน)</h2>
+            <p>แสดงแอปที่ผู้อื่นแชร์มาให้คุณใช้งานหรือแก้ไข</p>
+        </div>
+        <div id="data-all">
+            <h2 class="font-bold">All (ทั้งหมด)</h2>
+            <p>แสดงแอปทั้งหมดที่คุณสามารถเข้าถึงได้</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const closeModalBtn = document.getElementById('close-modal');
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+
+            function showModal(targetId) {
+                const contentSource = document.getElementById(`data-${targetId}`);
+                if (contentSource) {
+                    modalTitle.innerHTML = contentSource.querySelector('h2').innerHTML;
+                    modalDescription.innerHTML = contentSource.querySelector('p').innerHTML;
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modal.querySelector('.modal-content').classList.remove('scale-95');
+                }
+            }
+
+            function hideModal() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+            }
+
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', () => {
+                    const targetId = element.getAttribute('data-target');
+                    showModal(targetId);
+                });
+            });
+
+            closeModalBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
