@@ -90,12 +90,12 @@
 
         <section id="intro" class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">แนะนำ Power Platform และเริ่มต้นกับ Power Apps</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">ยินดีต้อนรับสู่บทเรียนแรก! ในบทนี้ เราจะสำรวจโลกของ Power Platform และเรียนรู้วิธีสร้างแอปพลิเคชันแรกของคุณด้วย Power Apps ตั้งแต่เริ่มต้น</p>
+            
         </section>
 
         <section id="overview" class="mb-16 scroll-mt-24">
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">Power Platform คืออะไร?</h3>
-            <p class="text-center text-gray-600 mb-8">คือชุดเครื่องมือ Low-Code จาก Microsoft ที่ช่วยให้ทุกคนสร้างโซลูชันทางธุรกิจได้อย่างรวดเร็ว ประกอบด้วยองค์ประกอบหลัก 4 อย่าง</p>
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">Power Platform</h3>
+            <p class="text-center text-gray-600 mb-8">คือชุดเครื่องมือ จาก Microsoft ที่ช่วยให้ทุกคนสร้างโซลูชันทางธุรกิจได้อย่างรวดเร็ว ประกอบด้วยองค์ประกอบหลัก 3 อย่าง</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <h4 class="font-bold text-xl mb-2 text-blue-600">Power Apps</h4>
@@ -112,6 +112,35 @@
                
             </div>
         </section>
+		<main class="flex-1 p-6 md:p-8 overflow-y-auto">
+            
+            <section id="intro" class="content-section active space-y-8">
+                <div class="p-6 bg-white rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-4">Power Apps คืออะไร</h2>
+                    <p class="text-lg text-slate-600">
+                        Power Apps คือแพลตฟอร์ม Low-Code/No-Code  สำหรับสร้างแอปพลิเคชันทางธุรกิจได้อย่างรวดเร็วโดยไม่ต้องเขียนโค้ดมากนัก แอปที่สร้างขึ้นสามารถใช้งานได้หลากหลายช่องทาง ไม่ว่าจะเป็นบนมือถือ, เว็บเบราว์เซอร์, หรือฝังใน Microsoft Teams และ SharePoint ได้อย่างง่ายดาย
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-6 bg-white rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-3">มีไว้สำหรับใคร?</h3>
+                        <ul class="space-y-3 list-disc list-inside text-slate-600">
+                            <li><b>ผู้ใช้ทั่วไปในองค์กร (Citizen Developer):</b> บุคลากรที่อยากสร้างแอปง่ายๆ เพื่อแก้ปัญหาในแผนกของตนเอง</li>
+                            <li><b>นักพัฒนา IT:</b> ใช้สำหรับสร้าง Prototype อย่างรวดเร็วเพื่อทดสอบแนวคิดก่อนการพัฒนาจริง</li>
+                            <li><b>ฝ่ายธุรกิจ/HR/การเงิน:</b> แผนกที่ต้องการสร้างระบบเล็กๆ สำหรับจัดการงานเฉพาะด้านด้วยตนเอง</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-3">ใช้งานกับงานอะไร?</h3>
+                        <ul class="space-y-3 list-disc list-inside text-slate-600">
+                            <li><b>ฟอร์มเก็บข้อมูล:</b> เช่น ฟอร์มแจ้งซ่อม, ฟอร์มสำรวจความพึงพอใจ</li>
+                            <li><b>แอป Workflow อนุมัติ:</b> เช่น ระบบขอลา, ระบบขออนุมัติจัดซื้อ</li>
+                            <li><b>Dashboard ติดตามงาน:</b> แสดงผลภาพรวมของโปรเจกต์หรือยอดขาย</li>
+                            <li><b>แอปหน้างาน:</b> เช่น แอปเช็คสต็อก, แอปบันทึกการลงเวลางาน</li>
+                        </ul>
+                    </div>
+                </div>
 
         <section id="studio" class="mb-16 scroll-mt-24">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">สำรวจ Power Apps Studio</h3>
@@ -131,6 +160,179 @@
                 </div>
             </div>
         </section>
+				
+		<section>
+			    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-6 md:p-10">
+
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-teal-700 mb-2">ตัวอย่างการใช้งาน Insert Control ใน Power Apps</h1>
+            
+        </header>
+        
+        <p class="text-base md:text-lg text-gray-700 mb-8">
+            เมนู <span class="font-bold text-teal-700">"Insert"</span> เป็นเหมือนคลังเครื่องมือที่รวบรวมส่วนประกอบ (Controls) ทั้งหมดที่สามารถนำมาใช้สร้างแอปได้ โดยแต่ละ Control จะมีหน้าที่และคุณสมบัติที่แตกต่างกันไป
+        </p>
+
+
+
+        <div id="tab-contents">
+            <div id="display-tab" class="tab-content active" role="tabpanel">
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">1. การแสดงข้อมูล (Display)</h2>
+                <p class="text-gray-600 mb-6">ใช้สำหรับแสดงข้อมูลหรือข้อความที่ผู้ใช้ไม่สามารถแก้ไขได้</p>
+                <div class="space-y-6">
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Label</h3>
+                        <p class="text-gray-700">ใช้แสดงข้อความคงที่ เช่น หัวข้อ, คำอธิบาย หรือผลลัพธ์จากการคำนวณ</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300">
+                            <label class="text-sm font-bold text-gray-500">ตัวอย่าง:</label>
+                            <div class="p-2 border rounded-md bg-gray-100 mt-1">ยินดีต้อนรับสู่แอป Power Apps</div>
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">Text</b>: ข้อความที่จะแสดงใน Label</li>
+                                <li><b class="text-teal-700">Color</b>: สีของข้อความ</li>
+                                <li><b class="text-teal-700">Size</b>: ขนาดตัวอักษร</li>
+                                <li><b class="text-teal-700">Visible</b>: กำหนดว่าจะแสดง Label หรือไม่ (true/false)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">HTML Text</h3>
+                        <p class="text-gray-700">แสดงข้อความที่รองรับการจัดรูปแบบแบบ HTML</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300">
+                            <label class="text-sm font-bold text-gray-500">ตัวอย่าง:</label>
+                            <div class="p-2 border rounded-md bg-gray-100 mt-1"><b class="text-teal-700">ข้อความนี้</b> <i>เป็น HTML</i></div>
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">HtmlText</b>: โค้ด HTML ที่จะแสดง</li>
+                                <li><b class="text-teal-700">Width / Height</b>: กำหนดขนาดของพื้นที่แสดงผล</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="input-tab" class="tab-content" role="tabpanel">
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">2. การรับข้อมูลจากผู้ใช้ (Input)</h2>
+                <p class="text-gray-600 mb-6">ใช้เพื่อรับข้อมูลที่ผู้ใช้ป้อนเข้าไปในแอป</p>
+                <div class="space-y-6">
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Text Input</h3>
+                        <p class="text-gray-700">ช่องสำหรับกรอกข้อความทั่วไป</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300">
+                            <label class="text-sm font-bold text-gray-500">ตัวอย่าง:</label>
+                            <input type="text" placeholder="กรุณาป้อนชื่อของคุณ" class="p-2 w-full border rounded-md mt-1">
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">Default</b>: ค่าเริ่มต้นที่จะแสดงในช่องกรอก</li>
+                                <li><b class="text-teal-700">HintText</b>: ข้อความแนะนำที่จะแสดงเมื่อช่องว่าง</li>
+                                <li><b class="text-teal-700">Text</b>: ค่าข้อความปัจจุบันที่ผู้ใช้กรอก</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Date Picker</h3>
+                        <p class="text-gray-700">ปฏิทินสำหรับเลือกวันที่</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300">
+                            <label class="text-sm font-bold text-gray-500">ตัวอย่าง:</label>
+                            <input type="date" class="p-2 w-full border rounded-md mt-1">
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">DefaultDate</b>: วันที่เริ่มต้นที่จะแสดง</li>
+                                <li><b class="text-teal-700">SelectedDate</b>: วันที่ที่ผู้ใช้เลือกในปัจจุบัน</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data-tab" class="tab-content" role="tabpanel">
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">3. การจัดการข้อมูล (Data & Action)</h2>
+                <p class="text-gray-600 mb-6">กลุ่ม Control นี้เป็นหัวใจสำคัญที่ทำให้แอปของคุณทำงานได้จริง</p>
+                <div class="space-y-6">
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Button</h3>
+                        <p class="text-gray-700">ใช้สำหรับกำหนด "การกระทำ" ที่จะเกิดขึ้นเมื่อผู้ใช้กด</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300 flex justify-center">
+                            <button class="bg-teal-600 text-white font-bold py-2 px-6 rounded-md shadow-md hover:bg-teal-700 transition-colors">บันทึก</button>
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">OnSelect</b>: <span class="text-red-600 font-semibold">สำคัญที่สุด!</span> เขียนสูตรสำหรับ Action ที่ต้องการ (เช่น `Maps()`, `Collect()`)</li>
+                                <li><b class="text-teal-700">Text</b>: ข้อความที่จะแสดงบนปุ่ม</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Gallery</h3>
+                        <p class="text-gray-700">ใช้แสดงรายการข้อมูลจากแหล่งข้อมูล (เช่น Excel) และปรับแต่งหน้าตาได้</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300">
+                            <label class="text-sm font-bold text-gray-500">ตัวอย่างการแสดงผล:</label>
+                            <div class="mt-2 space-y-2">
+                                <div class="p-2 border rounded-md bg-gray-100">รายการที่ 1</div>
+                                <div class="p-2 border rounded-md bg-gray-100">รายการที่ 2</div>
+                                <div class="p-2 border rounded-md bg-gray-100">รายการที่ 3</div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">Items</b>: แหล่งข้อมูลที่จะนำมาแสดง (เช่น ชื่อตาราง Excel)</li>
+                                <li><b class="text-teal-700">Layout</b>: รูปแบบการแสดงผล (แนวตั้ง/แนวนอน)</li>
+                                <li><b class="text-teal-700">TemplateSize</b>: ขนาดของแต่ละรายการใน Gallery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="media-tab" class="tab-content" role="tabpanel">
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">4. สื่อและอุปกรณ์ (Media & Device)</h2>
+                <p class="text-gray-600 mb-6">ใช้สำหรับแสดงรูปภาพ, วิดีโอ หรือเชื่อมต่อกับอุปกรณ์ของเครื่องได้โดยตรง</p>
+                <div class="space-y-6">
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Camera</h3>
+                        <p class="text-gray-700">ใช้เพื่อเปิดกล้องของอุปกรณ์และถ่ายรูปได้โดยตรงจากในแอป</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300 flex justify-center">
+                            <p class="text-gray-500">📸 กล้องถ่ายรูป</p>
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">OnStream</b>: การกระทำเมื่อกล้องพร้อมใช้งาน</li>
+                                <li><b class="text-teal-700">OnPhotoTaken</b>: การกระทำเมื่อถ่ายรูปเสร็จแล้ว</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-md">
+                        <h3 class="font-bold text-lg mb-2">Barcode Reader</h3>
+                        <p class="text-gray-700">ใช้เพื่อสแกนบาร์โค้ดหรือ QR Code เพื่อดึงข้อมูล</p>
+                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300 flex justify-center">
+                            <p class="text-gray-500">📱 สแกน QR Code</p>
+                        </div>
+                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
+                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li><b class="text-teal-700">OnScan</b>: การกระทำเมื่อสแกนบาร์โค้ดสำเร็จ</li>
+                                <li><b class="text-teal-700">Value</b>: ค่าของบาร์โค้ดที่สแกนได้</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+		</section>		
         
         <section id="practice" class="mb-16 scroll-mt-24">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">ภาคปฏิบัติ: สร้างแอปแรกของคุณ</h3>
@@ -431,6 +633,7 @@ Sort(Search(colProducts, TextInput1.Text, "Name"), Name, SortOrder.Ascending)</c
                 });
             });
         });
+		
     </script>
 </body>
 </html>
