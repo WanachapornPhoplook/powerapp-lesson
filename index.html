@@ -65,17 +65,16 @@
 
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold text-amber-700">บทที่ 1: Power Apps</h1>
+<h1 class="text-xl md:text-2xl font-bold text-amber-700">บทที่ 1: Power Apps</h1>
             <div class="hidden md:flex space-x-8">
                 <a href="#overview" class="nav-link pb-1 border-b-2 border-transparent">ภาพรวม</a>
                 <a href="#studio" class="nav-link pb-1 border-b-2 border-transparent">สตูดิโอ</a>
-                <a href="#practice" class="nav-link pb-1 border-b-2 border-transparent">ภาคปฏิบัติ</a>
+                <a href="#practice" class="nav-link pb-1 border-b-2 border-transparent">ภาคปฏิบัติ 1</a>
 				<a href="#formulas" class="nav-link pb-1 border-b-2 border-transparent">Formulas</a>	
-                <a href="#workshop" class="nav-link pb-1 border-b-2 border-transparent">Workshop</a>
-            </div>
+               
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+</button>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#overview" class="block py-2 text-gray-700">ภาพรวม</a>
@@ -216,8 +215,9 @@
             </div>
 
             <div id="input-tab" class="tab-content" role="tabpanel">
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">&nbsp;</h2>
                 <h2 class="text-2xl font-semibold text-teal-700 mb-4">2. การรับข้อมูลจากผู้ใช้ (Input)</h2>
-                <p class="text-gray-600 mb-6">ใช้เพื่อรับข้อมูลที่ผู้ใช้ป้อนเข้าไปในแอป</p>
+<p class="text-gray-600 mb-6">ใช้เพื่อรับข้อมูลที่ผู้ใช้ป้อนเข้าไปในแอป</p>
                 <div class="space-y-6">
                     <div class="p-4 border border-gray-200 rounded-md">
                         <h3 class="font-bold text-lg mb-2">Text Input</h3>
@@ -251,11 +251,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+          </div>
 
             <div id="data-tab" class="tab-content" role="tabpanel">
-                <h2 class="text-2xl font-semibold text-teal-700 mb-4">3. การจัดการข้อมูล (Data & Action)</h2>
-                <p class="text-gray-600 mb-6">กลุ่ม Control นี้เป็นหัวใจสำคัญที่ทำให้แอปของคุณทำงานได้จริง</p>
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">&nbsp;</h2>
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">3. การจัดการข้อมูล (Data &amp; Action)</h2>
+<p class="text-gray-600 mb-6">กลุ่ม Control นี้เป็นหัวใจสำคัญที่ทำให้แอปของคุณทำงานได้จริง</p>
                 <div class="space-y-6">
                     <div class="p-4 border border-gray-200 rounded-md">
                         <h3 class="font-bold text-lg mb-2">Button</h3>
@@ -292,11 +293,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+          </div>
 
             <div id="media-tab" class="tab-content" role="tabpanel">
-                <h2 class="text-2xl font-semibold text-teal-700 mb-4">4. สื่อและอุปกรณ์ (Media & Device)</h2>
-                <p class="text-gray-600 mb-6">ใช้สำหรับแสดงรูปภาพ, วิดีโอ หรือเชื่อมต่อกับอุปกรณ์ของเครื่องได้โดยตรง</p>
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">&nbsp;</h2>
+                <h2 class="text-2xl font-semibold text-teal-700 mb-4">4. สื่อและอุปกรณ์ (Media &amp; Device)</h2>
+<p class="text-gray-600 mb-6">ใช้สำหรับแสดงรูปภาพ, วิดีโอ หรือเชื่อมต่อกับอุปกรณ์ของเครื่องได้โดยตรง</p>
                 <div class="space-y-6">
                     <div class="p-4 border border-gray-200 rounded-md">
                         <h3 class="font-bold text-lg mb-2">Camera</h3>
@@ -312,30 +314,26 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="p-4 border border-gray-200 rounded-md">
-                        <h3 class="font-bold text-lg mb-2">Barcode Reader</h3>
-                        <p class="text-gray-700">ใช้เพื่อสแกนบาร์โค้ดหรือ QR Code เพื่อดึงข้อมูล</p>
-                        <div class="bg-gray-50 mt-3 p-3 rounded-md border border-dashed border-gray-300 flex justify-center">
-                            <p class="text-gray-500">📱 สแกน QR Code</p>
-                        </div>
-                        <div class="bg-gray-100 mt-4 p-3 rounded-md border border-gray-200">
-                            <h4 class="font-bold text-sm mb-1 text-gray-600">Properties ที่สำคัญ:</h4>
-                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                                <li><b class="text-teal-700">OnScan</b>: การกระทำเมื่อสแกนบาร์โค้ดสำเร็จ</li>
-                                <li><b class="text-teal-700">Value</b>: ค่าของบาร์โค้ดที่สแกนได้</li>
-                            </ul>
-                        </div>
-                    </div>
+                    
                 </div>
-            </div>
+          </div>
         </div>
     </div>
 
    
 		</section>		
         
-        <section id="practice" class="mb-16 scroll-mt-24">
+<section id="practice" class="mb-16 scroll-mt-24">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">ภาคปฏิบัติ: สร้างแอปแรกของคุณ</h3>
+			<div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAGz8uYcXrY/Y4y9k74ZwMq-m1Jn5tskzQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGz8uYcXrY&#x2F;Y4y9k74ZwMq-m1Jn5tskzQ&#x2F;view?utm_content=DAGz8uYcXrY&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">1. หน้าจอเข้าสู่ระบบ (Login Screen)</a> โดย wanachaporn phoplook
+			<!--
             <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
                 <div class="accordion-item border-b">
                     <button class="accordion-header w-full text-left py-4 focus:outline-none">
@@ -388,10 +386,13 @@
                     </div>
                 </div>
             </div>
+			
+			-->
         </section>
 		<section id="formulas" class="mb-16 scroll-mt-24">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">&nbsp;</h3>
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula: หัวใจของการสร้างแอป</h3>
-            <p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป ลองดูตัวอย่างสูตรพื้นฐานที่เราจะใช้ในการสร้างแอป</p>
+<p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป ลองดูตัวอย่างสูตรพื้นฐานที่เราจะใช้ในการสร้างแอป</p>
             <div class="bg-white p-8 rounded-lg shadow-xl">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">สูตรพื้นฐานที่ต้องรู้</h2>
 
@@ -466,9 +467,8 @@ Sort(Search(colProducts, TextInput1.Text, "Name"), Name, SortOrder.Ascending)</c
                 </div>
 
             </div>
-    
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula: หัวใจของการสร้างแอป</h3>
-            <p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป</p>
+    <br><br>
+           
             <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg shadow-lg">
                 <div class="flex flex-col space-y-4">
                     <div>
@@ -490,72 +490,7 @@ Sort(Search(colProducts, TextInput1.Text, "Name"), Name, SortOrder.Ascending)</c
             </div>
         </section>
 
-        <section id="workshop" class="scroll-mt-24">
-            <div class="bg-amber-600 text-white p-8 rounded-lg shadow-xl">
-                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-center">Workshop (1 ชั่วโมง): สร้างแอป Task Manager</h3>
-                <p class="text-center mb-6">มาลงมือทำจริง! สร้างแอปจัดการงานอย่างง่าย เพื่อทบทวนความรู้ทั้งหมดที่เรียนมาในวันนี้</p>
-                <div class="bg-white/90 text-gray-800 p-6 rounded-lg">
-                    <div class="accordion-item border-b border-amber-200">
-                        <button class="accordion-header w-full text-left py-4 focus:outline-none">
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-semibold text-amber-800">เป้าหมายที่ 1 (15 นาที): เตรียมโครงสร้างแอป</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-4 bg-amber-50 rounded-b-md">
-                                <p>1. สร้าง Canvas App ใหม่ในรูปแบบ <strong>Tablet</strong></p>
-                                <p>2. สร้าง 2 หน้าจอ:</p>
-                                <ul class="list-disc list-inside ml-4 mt-2">
-                                    <li>เปลี่ยนชื่อ Screen1 เป็น <strong>HomeScreen</strong></li>
-                                    <li>สร้างหน้าจอใหม่และตั้งชื่อว่า <strong>NewTaskScreen</strong></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border-b border-amber-200">
-                        <button class="accordion-header w-full text-left py-4 focus:outline-none">
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-semibold text-amber-800">เป้าหมายที่ 2 (30 นาที): ออกแบบ UI และการนำทาง</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-4 bg-amber-50 rounded-b-md">
-                                <p class="font-semibold mb-2">บนหน้า HomeScreen:</p>
-                                <ul class="list-disc list-inside ml-4 mb-4">
-                                    <li>เพิ่ม Label ที่มีข้อความว่า "รายการงานของฉัน"</li>
-                                    <li>เพิ่ม Button ที่มีข้อความว่า "เพิ่มงานใหม่"</li>
-                                    <li>เขียนสูตรที่ปุ่มนี้ให้ Navigate ไปยัง <strong>NewTaskScreen</strong></li>
-                                </ul>
-                                <p class="font-semibold mb-2">บนหน้า NewTaskScreen:</p>
-                                <ul class="list-disc list-inside ml-4">
-                                    <li>เพิ่ม Label "ชื่องาน" และ Text Input สำหรับกรอกชื่องาน</li>
-                                    <li>เพิ่ม Button "บันทึก" และ "ยกเลิก"</li>
-                                    <li>เขียนสูตรที่ปุ่ม "ยกเลิก" ให้ Navigate กลับไปยัง <strong>HomeScreen</strong></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header w-full text-left py-4 focus:outline-none">
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-semibold text-amber-800">เป้าหมายที่ 3 (15 นาที): ทดสอบและสรุป</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-4 bg-amber-50 rounded-b-md">
-                                <p>1. กดปุ่ม Play เพื่อทดสอบการทำงานของแอป</p>
-                                <p>2. ตรวจสอบว่าปุ่ม "เพิ่มงานใหม่" และ "ยกเลิก" ทำงานถูกต้องหรือไม่</p>
-                                <p>3. เตรียมคำถามที่สงสัยไว้ถามผู้สอน</p>
-                                <p class="mt-4 font-semibold">เยี่ยมมาก! คุณได้สร้างพื้นฐานของแอป Task Manager สำเร็จแล้ว!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
     </main>
 
