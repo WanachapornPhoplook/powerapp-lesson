@@ -59,31 +59,100 @@
             overflow: hidden;
             transition: max-height 0.5s ease-in-out;
         }
+		
+        .code-example {
+            background-color: #E5E7EB; 
+            border-left: 4px solid #3B82F6; 
+            color: #1F2937;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .symbol-cell {
+            font-family: monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3B82F6;
+        }
+        th {
+            font-weight: 700;
+            color: #1F2937;
+            padding: 0.75rem;
+            border-bottom-width: 2px;
+            border-color: #D1D5DB;
+        }
+        td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-bottom-width: 1px;
+            border-color: #E5E7EB;
+        }
+
     </style>
 </head>
 <body class="antialiased">
 
-    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-<h1 class="text-xl md:text-2xl font-bold text-amber-700">บทที่ 1: Power Apps</h1>
-            <div class="hidden md:flex space-x-8">
-                <a href="#overview" class="nav-link pb-1 border-b-2 border-transparent">ภาพรวม</a>
-                <a href="#studio" class="nav-link pb-1 border-b-2 border-transparent">สตูดิโอ</a>
-                <a href="#practice" class="nav-link pb-1 border-b-2 border-transparent">ภาคปฏิบัติ 1</a>
-				<a href="#formulas" class="nav-link pb-1 border-b-2 border-transparent">Formulas</a>	
-               
+ <header id="header" class="fixed top-0 left-0 w-full bg-white/80 shadow-md z-50 backdrop-blur-lg">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Title with requested amber color -->
+            <h1 class="text-xl md:text-2xl font-bold text-amber-700">บทที่ 1: Power Apps</h1>
+            
+            <!-- Desktop Menu (Integrated with Dropdown logic) -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#overview" class="nav-link pb-1 border-b-2 border-transparent text-gray-700 hover:text-[#3B82F6]">ภาพรวม</a>
+                <a href="#studio" class="nav-link pb-1 border-b-2 border-transparent text-gray-700 hover:text-[#3B82F6]">สตูดิโอ</a>
+                
+                <!-- Practice Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center pb-1 border-b-2 border-transparent text-gray-700 hover:text-[#3B82F6] group-hover:border-[#3B82F6]">
+                        ภาคปฏิบัติ 
+                        <svg class="w-4 h-4 ml-1 transform transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="dropdown-menu absolute hidden group-hover:block pt-3">
+                        <div class="bg-white rounded-lg shadow-xl py-1">
+                            <a href="https://www.canva.com/design/DAGz8uYcXrY/PUy4LVBFu19-7qmXQ-EoVw/view?utm_content=DAGz8uYcXrY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h49181dd229" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ครั้งที่ 1 </a>
+                            <a href="https://www.canva.com/design/DAG00lO5Vbs/2z4N9se84y8PI2MOviAjTA/view?utm_content=DAG00lO5Vbs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h98f9f12d6b" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ครั้งที่ 2 </a>
+                            <a href="#practice-3" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ครั้งที่ 3 </a>
+                            <a href="#practice-4" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ครั้งที่ 4 </a>
+                            <a href="#practice-5" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ครั้งที่ 5 </a>
+                            <a href="#practice-6" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ครั้งที่ 6 </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#formulas" class="nav-link pb-1 border-b-2 border-transparent text-gray-700 hover:text-[#3B82F6]">Formulas/Symbols</a>	
+            </div>
+            
+            <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-</button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#overview" class="block py-2 text-gray-700">ภาพรวม</a>
-            <a href="#studio" class="block py-2 text-gray-700">สตูดิโอ</a>
-            <a href="#practice" class="block py-2 text-gray-700">ภาคปฏิบัติ</a>
-			<a href="#formulas" class="block py-2 text-gray-700">Formulas</a>
-            <a href="#workshop" class="block py-2 text-gray-700">Workshop</a>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Content (Integrated with Dropdown logic) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t">
+            <a href="#overview" class="block px-6 py-2 text-gray-700 hover:bg-gray-200">ภาพรวม</a>
+            <a href="#studio" class="block px-6 py-2 text-gray-700 hover:bg-gray-200">สตูดิโอ</a>
+            <div class="py-2 px-6">
+                <button id="mobile-practice-toggle" class="w-full text-left text-gray-700 font-semibold flex justify-between items-center hover:text-[#3B82F6]">
+                    ภาคปฏิบัติ
+                    <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="mobile-practice-menu" class="hidden pl-4 mt-1 space-y-1">
+                    <a href="https://www.canva.com/design/DAGz8uYcXrY/PUy4LVBFu19-7qmXQ-EoVw/view?utm_content=DAGz8uYcXrY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h49181dd229" target="_blank" class="block text-sm text-gray-600 hover:text-[#3B82F6]">ครั้งที่ 1</a>
+                    <a href="https://www.canva.com/design/DAG00lO5Vbs/2z4N9se84y8PI2MOviAjTA/view?utm_content=DAG00lO5Vbs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h98f9f12d6b" target="_blank" class="block text-sm text-gray-600 hover:text-[#3B82F6]">ครั้งที่ 2</a>
+                    <a href="#practice-3" class="block text-sm text-gray-600 hover:text-[#3B82F6]">ครั้งที่ 3</a>
+                    <a href="#practice-4" class="block text-sm text-gray-600 hover:text-[#3B82F6]">ครั้งที่ 4</a>
+                    <a href="#practice-5" class="block text-sm text-gray-600 hover:text-[#3B82F6]">ครั้งที่ 5 </a>
+                    <a href="#practice-6" class="block text-sm text-gray-600 hover:text-[#3B82F6]">ครั้งที่ 6 </a>
+                </div>
+            </div>
+            <a href="#formulas" class="block px-6 py-2 text-gray-700 hover:bg-gray-200">Formulas/Symbols</a>
         </div>
     </header>
+    
 
     <main class="container mx-auto px-6 py-8 md:py-12">
 
@@ -323,171 +392,465 @@
    
 		</section>		
         
-<section id="practice" class="mb-16 scroll-mt-24">
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">ภาคปฏิบัติ: สร้างแอปแรกของคุณ</h3>
-			<div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGz8uYcXrY/Y4y9k74ZwMq-m1Jn5tskzQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGz8uYcXrY&#x2F;Y4y9k74ZwMq-m1Jn5tskzQ&#x2F;view?utm_content=DAGz8uYcXrY&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">1. หน้าจอเข้าสู่ระบบ (Login Screen)</a> โดย wanachaporn phoplook
-			<!--
-            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
-                <div class="accordion-item border-b">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-semibold text-gray-700">ขั้นตอนที่ 1: สร้างแอปใหม่</span>
-                            <span class="transform transition-transform duration-300">▼</span>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <p class="mb-2">1. ไปที่ <a href="https://make.powerapps.com" target="_blank" class="text-blue-600 hover:underline">make.powerapps.com</a></p>
-                            <p class="mb-2">2. คลิก <strong>Create</strong> > <strong>Canvas app from blank</strong></p>
-                            <p class="mb-2">3. ตั้งชื่อแอปว่า "MyFirstApp" และเลือกรูปแบบ <strong>Tablet</strong></p>
-                            <p>4. กด <strong>Create</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item border-b">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-semibold text-gray-700">ขั้นตอนที่ 2: ออกแบบหน้าจอแรก</span>
-                            <span class="transform transition-transform duration-300">▼</span>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <p class="mb-2">1. ที่แถบ Ribbon ด้านบน คลิก <strong>Insert</strong> > <strong>Label</strong></p>
-                            <p class="mb-2">2. ที่ Properties Pane ด้านขวา เปลี่ยนค่า <strong>Text</strong> เป็น "ยินดีต้อนรับ!"</p>
-                            <p class="mb-2">3. คลิก <strong>Insert</strong> > <strong>Button</strong></p>
-                            <p>4. เปลี่ยนค่า <strong>Text</strong> ของ Button เป็น "ไปต่อ"</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-semibold text-gray-700">ขั้นตอนที่ 3: เพิ่มหน้าจอและสร้างการนำทาง (Navigation)</span>
-                            <span class="transform transition-transform duration-300">▼</span>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <p class="mb-2">1. ที่ Tree View (ด้านซ้าย) คลิก <strong>New screen</strong> > <strong>Blank</strong> เพื่อสร้างหน้าจอที่สอง</p>
-                            <p class="mb-2">2. กลับมาที่หน้าจอแรก และเลือกปุ่ม "ไปต่อ"</p>
-                            <p class="mb-2">3. ที่ Formula Bar เลือก Property เป็น <strong>OnSelect</strong></p>
-                            <p class="mb-2">4. พิมพ์สูตร:</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-md text-sm mt-2"><code>Navigate(Screen2, ScreenTransition.Fade)</code></pre>
-                            <p class="mt-4">5. กดปุ่ม Play (▶) ที่มุมขวาบนเพื่อทดสอบการทำงาน</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			
-			-->
-        </section>
+
 		<section id="formulas" class="mb-16 scroll-mt-24">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">&nbsp;</h3>
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula: หัวใจของการสร้างแอป</h3>
-<p class="text-center text-gray-600 mb-8">สูตรใน Power Apps มีลักษณะคล้ายกับการเขียนสูตรใน Excel แต่ใช้เพื่อกำหนด "การกระทำ" (Action) และ "คุณสมบัติ" (Property) ของส่วนประกอบต่างๆ ในแอป ลองดูตัวอย่างสูตรพื้นฐานที่เราจะใช้ในการสร้างแอป</p>
-            <div class="bg-white p-8 rounded-lg shadow-xl">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">สูตรพื้นฐานที่ต้องรู้</h2>
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">หลักการของ Formula</h3>
+			
+			 <section>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">&nbsp;</h2>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">1. สัญลักษณ์ทางคณิตศาสตร์ (Arithmetic)</h2>
+<table class="w-full text-left border-collapse">
+      <thead>
+          <tr class="bg-gray-100">
+              <th class="w-1/12">สัญลักษณ์</th>
+              <th class="w-2/12">ชื่อเรียก</th>
+              <th class="w-5/12">การทำงาน/การใช้งาน</th>
+              <th class="w-4/12">ตัวอย่าง Power Fx</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">+</td>
+              <td>บวก (Addition)</td>
+              <td class="text-sm text-gray-700">รวมค่าตัวเลขเข้าด้วยกัน</td>
+              <td><div class="code-example">Revenue_Q1 + Revenue_Q2</div></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">-</td>
+              <td>ลบ (Subtraction)</td>
+              <td class="text-sm text-gray-700">หาผลต่างของตัวเลข</td>
+              <td><div class="code-example">TotalStock - ItemsSold</div></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">*</td>
+              <td>คูณ (Multiplication)</td>
+              <td class="text-sm text-gray-700">หาผลคูณของตัวเลข</td>
+              <td><div class="code-example">UnitPrice * Quantity</div></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">/</td>
+              <td>หาร (Division)</td>
+              <td class="text-sm text-gray-700">หาผลหารของตัวเลข</td>
+              <td><div class="code-example">TotalScore / MaxScore</div></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">%</td>
+              <td>Modulus</td>
+              <td class="text-sm text-gray-700">หารเอาเศษ (หาเศษจากการหาร)</td>
+              <td><div class="code-example">10 % 3</div></td>
+          </tr>
+      </tbody>
+    </table>
+            </section>
 
-                <!-- หมวดหมู่ที่ 1: การควบคุมการทำงาน -->
-                <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-semibold text-gray-700">การควบคุมการทำงาน (Flow Control)</span>
-                        <span class="transform transition-transform duration-300">▼</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <div class="mb-4">
-                                <h3 class="text-lg font-bold">If() และ Switch()</h3>
-                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับกำหนดเงื่อนไขในการทำงานของแอป</p>
-                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>If(IsBlank(TextInput1.Text), Notify("กรุณาป้อนข้อมูล"), Navigate(Screen2))</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Section 2: สัญลักษณ์เปรียบเทียบ (ลดขนาดหัวข้อ) -->
+            <section>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">&nbsp;</h2>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">2. สัญลักษณ์เปรียบเทียบ (Comparison)</h2>
+<p class="text-gray-700 mb-4 text-sm">ผลลัพธ์จะเป็น **True** หรือ **False** เสมอ</p>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="w-1/12">สัญลักษณ์</th>
+                            <th class="w-2/12">ชื่อเรียก</th>
+                            <th class="w-5/12">การทำงาน/การใช้งาน</th>
+                            <th class="w-4/12">ตัวอย่าง Power Fx</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">=</td>
+                            <td>เท่ากับ (Equal)</td>
+                            <td class="text-sm text-gray-700">ตรวจสอบว่าค่าซ้ายเท่ากับค่าขวาหรือไม่</td>
+                            <td><div class="code-example">Status = "Active"</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell"><></td>
+                            <td>ไม่เท่ากับ (Not Equal)</td>
+                            <td class="text-sm text-gray-700">ตรวจสอบว่าค่าซ้ายไม่เท่ากับค่าขวาหรือไม่</td>
+                            <td><div class="code-example">UserRole <> "Admin"</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">></td>
+                            <td>มากกว่า (Greater Than)</td>
+                            <td class="text-sm text-gray-700">ตรวจสอบว่าค่ามากกว่าหรือไม่</td>
+                            <td><div class="code-example">ItemCount > 50</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell"><=</td>
+                            <td>น้อยกว่าหรือเท่ากับ</td>
+                            <td class="text-sm text-gray-700">ตรวจสอบว่าค่าน้อยกว่าหรือเท่ากับหรือไม่</td>
+                            <td><div class="code-example">Cost <= Budget</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-                <!-- หมวดหมู่ที่ 2: การจัดการข้อมูล -->
-                <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-semibold text-gray-700">การจัดการข้อมูล (Data Manipulation)</span>
-                        <span class="transform transition-transform duration-300">▼</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <div class="mb-4">
-                                <h3 class="text-lg font-bold">Collect(), ClearCollect(), Patch()</h3>
-                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับเพิ่ม, แก้ไข, ลบข้อมูลใน Collection หรือแหล่งข้อมูล</p>
-                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>ClearCollect(colProducts, {ID: 1, Name: "Monitor", Price: 3500})
-Patch(colProducts, LookUp(colProducts, ID = 1), {Price: 4000})</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Section 3: สัญลักษณ์ตรรกะ (ลดขนาดหัวข้อ) -->
+            <section>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">&nbsp;</h2>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">3. สัญลักษณ์ตรรกะ (Logical Operators)</h2>
+<p class="text-gray-700 mb-4 text-sm">ใช้รวมเงื่อนไขหลาย ๆ เงื่อนไขเข้าด้วยกัน</p>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="w-1/12">สัญลักษณ์</th>
+                            <th class="w-2/12">ชื่อเรียก</th>
+                            <th class="w-5/12">การทำงาน/การใช้งาน</th>
+                            <th class="w-4/12">ตัวอย่าง Power Fx</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">And / &&</td>
+                            <td>และ (AND)</td>
+                            <td class="text-sm text-gray-700">ต้องเป็น **True ทั้งสองเงื่อนไข** จึงจะได้ True</td>
+                            <td><div class="code-example">Filter(Col, Score > 7 && IsActive)</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">Or / ||</td>
+                            <td>หรือ (OR)</td>
+                            <td class="text-sm text-gray-700">ขอแค่ **เงื่อนไขใดเงื่อนไขหนึ่งเป็นจริง** ก็จะได้ True</td>
+                            <td><div class="code-example">Filter(Col, Category = "Book" || Category = "Digital")</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">Not</td>
+                            <td>ไม่ใช่ (NOT)</td>
+                            <td class="text-sm text-gray-700">กลับค่าตรรกะ (True เป็น False และกลับกัน)</td>
+                            <td><div class="code-example">Not(IsBlank(TextInput1.Text))</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Section 4: สัญลักษณ์จัดการข้อความและ Record (ลดขนาดหัวข้อ) -->
+            <section>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">&nbsp;</h2>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">4. สัญลักษณ์จัดการข้อความและ Record</h2>
+<table class="w-full text-left border-collapse">
+      <thead>
+          <tr class="bg-gray-100">
+              <th class="w-1/12">สัญลักษณ์</th>
+              <th class="w-2/12">ชื่อเรียก</th>
+              <th class="w-5/12">การทำงาน/การใช้งาน</th>
+              <th class="w-4/12">ตัวอย่าง Power Fx</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">&</td>
+              <td>การเชื่อม (Concatenation)</td>
+              <td class="text-sm text-gray-700">ใช้เชื่อมข้อความสองส่วนเข้าด้วยกัน</td>
+              <td><div class="code-example">"Invoice-" & Text(InvoiceNumber)</div></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+              <td class="symbol-cell">.</td>
+              <td>ตัวดำเนินการจุด (Dot Operator)</td>
+              <td class="text-sm text-gray-700">เข้าถึงคอลัมน์ของ Record หรือคุณสมบัติของ Control</td>
+              <td><div class="code-example">Gallery1.Selected.Name</div></td>
+          </tr>
+      </tbody>
+    </table>
+            </section>
+            
+            <!-- Section 5: สัญลักษณ์การกำหนดและแบ่งอาร์กิวเมนต์ (ลดขนาดหัวข้อ) -->
+            <section>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 pb-1">5. สัญลักษณ์การกำหนดและแบ่งอาร์กิวเมนต์ (Delimiters)</h2>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="w-1/12">สัญลักษณ์</th>
+                            <th class="w-2/12">ชื่อเรียก</th>
+                            <th class="w-5/12">การทำงาน/การใช้งาน</th>
+                            <th class="w-4/12">ตัวอย่าง Power Fx</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">,</td>
+                            <td>คอมมา (Comma)</td>
+                            <td class="text-sm text-gray-700">ใช้แบ่งอาร์กิวเมนต์/พารามิเตอร์แต่ละตัวในฟังก์ชัน</td>
+                            <td><div class="code-example">If(Condition, ResultTrue, ResultFalse)</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">:</td>
+                            <td>โคลอน (Colon)</td>
+                            <td class="text-sm text-gray-700">ใช้กำหนดค่าให้กับคอลัมน์ภายใน Record หรือตัวแปร Context (Name: Value)</td>
+                            <td><div class="code-example">{ Name: "John", Score: 85 }</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">&#123;&#125;</td>
+                            <td>วงเล็บปีกกา</td>
+                            <td class="text-sm text-gray-700">ใช้จัดกลุ่มชุดข้อมูล (Record) หรือตัวแปร Context</td>
+                            <td><div class="code-example">Collect(Col, { ID: 1, Name: "Test" })</div></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="symbol-cell">()</td>
+                            <td>วงเล็บ (Parentheses)</td>
+                            <td class="text-sm text-gray-700">ใช้ล้อมรอบอาร์กิวเมนต์ทั้งหมดของฟังก์ชันและจัดลำดับการทำงาน</td>
+                            <td><div class="code-example">Filter(Col, StartDate = Today())</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-                <!-- หมวดหมู่ที่ 3: การค้นหาและกรองข้อมูล -->
-                <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-semibold text-gray-700">การค้นหาและกรองข้อมูล (Filtering & Lookup)</span>
-                        <span class="transform transition-transform duration-300">▼</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <div class="mb-4">
-                                <h3 class="text-lg font-bold">Filter(), Search(), LookUp() และ Sort()</h3>
-                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับจัดการข้อมูลในชุดข้อมูลให้ตรงตามเงื่อนไขที่ต้องการ</p>
-                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>Filter(colProducts, Price > 1000)
-Sort(Search(colProducts, TextInput1.Text, "Name"), Name, SortOrder.Ascending)</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- หมวดหมู่ที่ 4: การทำงานกับตัวแปร -->
-                <div class="accordion-item">
-                    <button class="accordion-header w-full text-left py-4 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-semibold text-gray-700">การทำงานกับตัวแปร (Variables)</span>
-                        <span class="transform transition-transform duration-300">▼</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 bg-gray-50 rounded-b-md">
-                            <div class="mb-4">
-                                <h3 class="text-lg font-bold">Set() และ UpdateContext()</h3>
-                                <p class="text-sm text-gray-600 mb-2">ใช้สำหรับสร้างและอัปเดตตัวแปรเพื่อเก็บค่าต่างๆ ในแอปพลิเคชัน</p>
-                                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs"><code>Set(varSelectedProduct, ThisItem)</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-    <br><br>
-           
-            <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg shadow-lg">
-                <div class="flex flex-col space-y-4">
-                    <div>
+            
+<br><br>
+            <div>
                         <h4 class="font-bold text-xl mb-2 text-amber-700">Formula คืออะไร?</h4>
                         <p class="text-gray-600">คือชุดคำสั่งที่เราใช้ในการบอก Power Apps ว่าเมื่อเกิดเหตุการณ์บางอย่างขึ้น (เช่น ผู้ใช้กดปุ่ม) แอปจะต้องทำอะไรต่อ</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xl mb-2 text-amber-700">ตัวอย่าง: การเปลี่ยนหน้าจอด้วยสูตร <span class="font-mono text-gray-800">Navigate()</span></h4>
-                        <p class="text-gray-600">สูตรนี้ใช้สำหรับการนำทางจากหน้าจอหนึ่งไปยังอีกหน้าจอหนึ่ง เมื่อคุณเขียนสูตรนี้ใน Property ชื่อ <span class="font-mono bg-gray-100 p-1 rounded">OnSelect</span> ของปุ่ม</p>
-                    </div>
+</div>
+           
+			
+<br><br>
+        
+        <section id="if-switch" class="space-y-8 mb-16">
+            <h2 class="font-bold text-[#3B82F6]">1. IF และ SWITCH (การตัดสินใจตามเงื่อนไข)</h2>
+            <p class="text-lg text-gray-700">ฟังก์ชันสำหรับการตัดสินใจตามเงื่อนไข ใช้เพื่อควบคุมการทำงานของแอปตามตรรกะที่กำหนด</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300">
+                    <h3 class="font-bold text-[#60A5FA] mb-2">IF</h3>
+                    <p class="text-gray-700">ใช้ตรวจสอบเงื่อนไขแบบ "ใช่/ไม่ใช่" (True/False) เหมาะสำหรับเงื่อนไขที่ไม่ซับซ้อน หรือมีการใช้ AND/OR ร่วมด้วย</p>
                 </div>
-                <div class="bg-gray-100 p-6 rounded-lg text-center">
-                    <p class="text-gray-600 mb-4">ลองดูตัวอย่างสูตร `Navigate()` นี้</p>
-                    <pre class="bg-gray-800 text-white p-3 rounded-md text-sm mb-4"><code>Navigate(Screen2, ScreenTransition.Fade)</code></pre>
-                    <p class="text-gray-600 mb-4">เมื่อคุณกดปุ่มด้านล่าง แอปจะเปลี่ยนไปหน้าจอที่ 2 โดยใช้เอฟเฟกต์ Fade</p>
-                    <button class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300">กดเพื่อดูตัวอย่าง</button>
-                    <p class="text-sm text-gray-400 mt-2">*(ปุ่มนี้เป็นตัวอย่าง ไม่มีผลจริง)*</p>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300">
+                    <h3 class="font-bold text-[#60A5FA] mb-2">SWITCH</h3>
+                    <p class="text-gray-700">ใช้เปรียบเทียบค่าเดียวกับหลายๆ ตัวเลือกที่เป็นไปได้ ทำให้อ่านง่ายกว่าเมื่อมีหลายทางเลือกจากค่าเดียวกัน</p>
                 </div>
             </div>
+
+            <h3 class="font-semibold text-[#3B82F6] pt-4">ตัวอย่างและการทดลอง: การให้เกรด</h3>
+            <div class="interactive-area p-6 rounded-lg shadow-inner">
+                <p class="mb-4 text-gray-700">ทดลองเปลี่ยนค่าในช่องด้านล่างเพื่อดูผลลัพธ์ของสูตร <code class="code-block inline p-1 rounded">If(Score >= 80, "A", Score >= 70, "B", "C")</code></p>
+                <div class="flex items-center space-x-4">
+                    <label for="scoreInput" class="font-semibold text-gray-800">คะแนน:</label>
+                    <input type="number" id="scoreInput" value="85" class="p-2 border rounded-md w-24">
+                    <span class="font-bold text-xl text-gray-800">ผลลัพธ์ (เกรด):</span>
+                    <span id="gradeResult" class="px-4 py-2 bg-gray-200 rounded-full font-bold text-[#3B82F6] text-lg">A</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVIGATE Section -->
+        <section id="navigate" class="space-y-8 mb-16 pt-8 border-t border-gray-300">
+            <h2 class="text-2xl font-bold text-[#3B82F6]">2. NAVIGATE (การเปลี่ยนหน้าจอ)</h2>
+            <p class="text-lg text-gray-700">ใช้เพื่อนำผู้ใช้ไปยังหน้าจอ (Screen) อื่นในแอปพลิเคชัน พร้อมทั้งสามารถกำหนดเอฟเฟกต์การเปลี่ยนหน้าได้</p>
+            
+            <h3 class="text-2xl font-semibold text-[#3B82F6]">ตัวอย่างและการทดลอง: จำลองการเปลี่ยนหน้า</h3>
+            <div class="interactive-area p-6 rounded-lg shadow-inner text-center">
+                <p class="mb-4 text-gray-700">คลิกปุ่มเพื่อจำลองการเปลี่ยนหน้าจอด้วยเอฟเฟกต์ Fade</p>
+                <div class="flex justify-center items-center space-x-8">
+                    <div id="screenA" class="w-40 h-56 bg-gray-700 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg transition-all duration-300 border-4 border-[#3B82F6]">Screen A</div>
+                    <div class="text-2xl text-[#3B82F6] font-bold">&rarr;</div>
+                    <div id="screenB" class="w-40 h-56 bg-gray-300 rounded-lg flex items-center justify-center text-gray-800 font-bold text-xl shadow-lg transition-all duration-300 border-4 border-transparent">Screen B</div>
+                </div>
+                <div class="mt-6 space-x-4">
+                    <button id="navFadeBtn" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg hover:bg-[#60A5FA] transition">Navigate(ScreenB, Fade)</button>
+                    <button id="navResetBtn" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLLECTIONS Section -->
+        <section id="collections" class="space-y-8 mb-16 pt-8 border-t border-gray-300">
+            <h2 class="font-bold text-[#3B82F6]">3. COLLECT และ CLEARCOLLECT (การจัดการ Collection)</h2>
+            <p class="text-lg text-gray-700">ใช้สำหรับสร้างและจัดการ "Collection" ซึ่งเป็นตารางข้อมูลชั่วคราวในหน่วยความจำของแอป</p>
+            
+            <div class="interactive-area p-6 rounded-lg shadow-inner">
+                <div class="flex space-x-4 mb-4">
+                    <button id="collectBtn" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg hover:bg-[#60A5FA] transition">Collect (เพิ่มข้อมูล)</button>
+                    <button id="clearCollectBtn" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">ClearCollect (แทนที่ข้อมูล)</button>
+                </div>
+                <p class="mb-2 font-semibold text-gray-700">Collection: MyCart</p>
+                <code class="code-block p-2 rounded block mb-4 text-sm">Collect: Collect(MyCart, {Item: "สินค้าใหม่", Price: X}) | ClearCollect: ClearCollect(MyCart, {Item: "Refreshed", Price: 100})</code>
+                <div id="cartCollection" class="bg-white text-gray-800 p-4 rounded border border-gray-300 min-h-[100px]"></div>
+            </div>
+        </section>
+
+        <!-- SEARCH Section -->
+        <section id="search" class="space-y-8 mb-16 pt-8 border-t border-gray-300">
+            <h2 class="font-bold text-[#3B82F6]">4. SEARCH (การกรองข้อมูลตามข้อความ)</h2>
+            <p class="text-lg text-gray-700">ใช้เพื่อกรองข้อมูลในตารางโดยค้นหาข้อความที่ระบุในคอลัมน์ที่กำหนด</p>
+            
+            <h3 class="font-semibold text-[#3B82F6]">ตัวอย่างและการทดลอง: ค้นหาสินค้า</h3>
+            <div class="interactive-area p-6 rounded-lg shadow-inner">
+                <p class="mb-2 text-gray-700">ทดลองค้นหาชื่อสินค้าหรือหมวดหมู่</p>
+                <code class="code-block p-2 rounded block mb-4">Search(Products, SearchInput.Text, "ProductName", "Category")</code>
+                <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา..." class="w-full p-2 border rounded-md mb-4">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-700 text-white">
+                            <th class="p-2 border-b border-gray-400">ProductName</th>
+                            <th class="p-2 border-b border-gray-400">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTable" class="text-gray-800">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SET Section -->
+        <section id="set" class="space-y-8 mb-16 pt-8 border-t border-gray-300">
+            <h2 class="font-bold text-[#3B82F6]">5. SET (การกำหนดค่าตัวแปร Global)</h2>
+            <p class="text-lg text-gray-700">ใช้เพื่อสร้างหรืออัปเดตค่าของตัวแปร Global ซึ่งสามารถเข้าถึงได้จากทุกหน้าจอในแอปพลิเคชัน</p>
+
+            <h3 class="font-semibold text-[#3B82F6]">ตัวอย่าง Set</h3>
+            <div class="interactive-area p-6 rounded-lg shadow-inner">
+                <p class="mb-4 text-gray-700">คลิกปุ่มเพื่อกำหนดค่าให้กับตัวแปร Global ชื่อ <code class="code-block inline p-1 rounded">varCurrentTheme</code></p>
+                <div class="flex items-center space-x-4">
+                    <button id="setDarkBtn" class="bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-400 hover:bg-gray-600">Set("Dark")</button>
+                    <button id="setLightBtn" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg border border-gray-400 hover:bg-gray-300">Set("Light")</button>
+                </div>
+                <div class="mt-4 p-4 bg-gray-100 rounded">
+                    <span class="font-semibold text-gray-700">ค่าปัจจุบันของ <code class="text-[#3B82F6] font-mono">varCurrentTheme</code>:</span>
+                    <span id="themeValue" class="font-bold text-lg ml-2 text-[#3B82F6]"></span>
+                </div>
+            </div>
+        </section>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Interactive Logic remains the same, but navigation logic is removed.
+
+    // IF/SWITCH
+    const scoreInput = document.getElementById('scoreInput');
+    const gradeResult = document.getElementById('gradeResult');
+    scoreInput.addEventListener('input', () => {
+        const score = parseInt(scoreInput.value) || 0;
+        let grade = '';
+        if (score >= 80) {
+            grade = 'A';
+        } else if (score >= 70) {
+            grade = 'B';
+        } else {
+            grade = 'C';
+        }
+        gradeResult.textContent = grade;
+    });
+
+    // NAVIGATE
+    const screenA = document.getElementById('screenA');
+    const screenB = document.getElementById('screenB');
+    const navFadeBtn = document.getElementById('navFadeBtn');
+    const navResetBtn = document.getElementById('navResetBtn');
+    
+    navFadeBtn.addEventListener('click', () => {
+        screenA.style.opacity = '0.5';
+        screenA.classList.remove('border-[#3B82F6]');
+        screenA.classList.add('border-transparent');
+        
+        screenB.style.opacity = '1';
+        screenB.classList.add('border-[#3B82F6]', 'bg-gray-700', 'text-white');
+        screenB.classList.remove('border-transparent', 'bg-gray-300', 'text-gray-800');
+    });
+
+    navResetBtn.addEventListener('click', () => {
+        screenA.style.opacity = '1';
+        screenA.classList.add('border-[#3B82F6]');
+        screenA.classList.remove('border-transparent');
+
+        screenB.style.opacity = '1';
+        screenB.classList.remove('border-[#3B82F6]', 'bg-gray-700', 'text-white');
+        screenB.classList.add('border-transparent', 'bg-gray-300', 'text-gray-800');
+    });
+    // Set initial screen B style for light theme
+    screenB.classList.add('bg-gray-300');
+
+
+    // COLLECTIONS
+    const collectBtn = document.getElementById('collectBtn');
+    const clearCollectBtn = document.getElementById('clearCollectBtn');
+    const cartCollectionDiv = document.getElementById('cartCollection');
+    let cart = [];
+    let itemCounter = 0;
+    const itemsPool = [
+        { name: 'Laptop', price: 35000 },
+        { name: 'Mouse', price: 800 },
+        { name: 'Keyboard', price: 1200 },
+        { name: 'Monitor', price: 7500 }
+    ];
+
+    function renderCart() {
+        cartCollectionDiv.innerHTML = cart.map(item => 
+            `<div class="p-2 border-b border-gray-300">${item.name} - ${item.price.toLocaleString()} THB</div>`
+        ).join('');
+        if (cart.length === 0) {
+            cartCollectionDiv.innerHTML = `<p class="text-gray-500">Collection is empty.</p>`;
+        }
+    }
+
+    collectBtn.addEventListener('click', () => {
+        if (itemCounter >= itemsPool.length) itemCounter = 0;
+        cart.push(itemsPool[itemCounter]);
+        itemCounter++;
+        renderCart();
+    });
+    
+    clearCollectBtn.addEventListener('click', () => {
+        cart = [{ name: 'Refreshed Item', price: 100 }];
+        itemCounter = 1;
+        renderCart();
+    });
+    renderCart();
+
+    // SEARCH
+    const searchInput = document.getElementById('searchInput');
+    const productsTable = document.getElementById('productsTable');
+    const products = [
+        { ProductName: 'ThinkPad X1', Category: 'Laptop' },
+        { ProductName: 'MX Master 3', Category: 'Mouse' },
+        { ProductName: 'Dell UltraSharp', Category: 'Monitor' },
+        { ProductName: 'Keychron K2', Category: 'Keyboard' },
+        { ProductName: 'Surface Pro', Category: 'Laptop' },
+    ];
+    
+    function renderProducts(filter = '') {
+        const lowerFilter = filter.toLowerCase();
+        const filteredProducts = products.filter(p => 
+            p.ProductName.toLowerCase().includes(lowerFilter) || 
+            p.Category.toLowerCase().includes(lowerFilter)
+        );
+        productsTable.innerHTML = filteredProducts.map(p => `
+            <tr class="border-b border-gray-400">
+                <td class="p-2">${p.ProductName}</td>
+                <td class="p-2">${p.Category}</td>
+            </tr>
+        `).join('');
+    }
+    
+    searchInput.addEventListener('input', () => renderProducts(searchInput.value));
+    renderProducts();
+
+    // SET
+    const setDarkBtn = document.getElementById('setDarkBtn');
+    const setLightBtn = document.getElementById('setLightBtn');
+    const themeValue = document.getElementById('themeValue');
+    let varCurrentTheme = 'Light';
+
+    function updateThemeDisplay() {
+        themeValue.textContent = `"${varCurrentTheme}"`;
+    }
+    
+    setDarkBtn.addEventListener('click', () => {
+        varCurrentTheme = 'Dark';
+        updateThemeDisplay();
+    });
+
+    setLightBtn.addEventListener('click', () => {
+        varCurrentTheme = 'Light';
+        updateThemeDisplay();
+    });
+    updateThemeDisplay();
+});
+</script>
+
+</body>
+</html>
+
         </section>
 
         
