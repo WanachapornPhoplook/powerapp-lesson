@@ -1,0 +1,291 @@
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f9fb; /* Light background */
+  }
+  .sticky-nav {
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .card-shadow {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  .image-placeholder {
+    height: 200px; /* Define a height for the placeholder */
+    background-color: #e0f2f1; /* Light teal background */
+    border: 1px dashed #28b8a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d9488;
+    font-weight: 600;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 10px;
+  }
+</style>
+
+<div id="app" class="min-h-screen">
+  
+  <!-- Header and Navigation (Sticky Jump Links) -->
+  <header class="sticky-nav bg-white border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">Power Automate Cloud Flow</h1>
+    </div>
+    <!-- Jump Links -->
+    <nav class="bg-indigo-700 text-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:lg-8">
+        <div class="flex space-x-4 overflow-x-auto py-2">
+          <a href="index.html" class="nav-item px-3 py-1.5 rounded-full text-sm font-medium hover:bg-indigo-500 transition duration-150 ease-in-out bg-indigo-600">หน้าหลัก</a>
+          
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Body (Continuous Scroll) -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="flow-container" class="space-y-8">
+
+      <!-- Modal/Overlay for Deep Dive Content -->
+      <div id="deep-dive-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl transform transition-all overflow-hidden">
+          <div class="p-6">
+            <h3 id="modal-title" class="text-2xl font-bold text-indigo-700 mb-3"></h3>
+            <div id="modal-content" class="text-gray-700 space-y-4 max-h-96 overflow-y-auto pr-2">
+              <!-- Content loaded by JS -->
+            </div>
+            <div class="mt-6 flex justify-end">
+              <button onclick="document.getElementById('deep-dive-modal').classList.add('hidden')" class="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition duration-150 ease-in-out">
+                ปิด
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+      
+      <!-- === SECTION 1: CORE CONCEPTS (Continuous Display) === -->
+      <section id="section-concepts" class="bg-white p-6 rounded-xl card-shadow border-t-4 border-teal-500 space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800">1. แนวคิดพื้นฐานและโครงสร้าง Flow</h2>
+        
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">💡</span> 1.1 Interface พื้นฐานและการใช้งาน
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">การทำความเข้าใจหน้าจอหลักช่วยให้คุณจัดการ Flow และตรวจสอบสถานะได้อย่างรวดเร็ว</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li class="font-medium text-gray-800">Home (หน้าแรก): ภาพรวม, ข่าวสาร, และ <b>Template</b> สำเร็จรูปที่สามารถนำไปปรับใช้ได้ทันที</li>
+              <li class="font-medium text-gray-800">Create (สร้าง): ปุ่มสำคัญสำหรับเริ่มต้น Flow ใหม่ โดยให้เลือกว่าจะสร้าง Flow อัตโนมัติ, Flow ทันที, หรือ Flow ตามกำหนดเวลา</li>
+              <li class="font-medium text-gray-800">My Flows (Flow ของฉัน): พื้นที่จัดการ Flow ที่คุณสร้างขึ้นทั้งหมด ใช้สำหรับ <b>เปิด/ปิด</b>, <b>แก้ไข</b>, และ <b>ลบ</b> Flow</li>
+              <li class="font-medium text-gray-800">การตรวจสอบ Flow: เข้าเมนู My Flows → เลือก Flow ที่ต้องการ → ดูที่แท็บ <b>Run History</b> (ประวัติการทำงาน) เพื่อตรวจสอบว่า Flow ทำงานสำเร็จ (Succeeded) หรือล้มเหลว (Failed) </li>
+            </ul>
+            <!-- Placeholder for Power Automate Main UI Screenshot -->
+			
+			<br><br>
+           <div>
+                <img src="img/Screenshot 2025-10-25 124700.png" alt="Power Automate Home Screen Interface" >
+            </div>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">⚙️</span> 1.2 ส่วนประกอบหลักของ Flow Designer
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">Flow ทุกตัวสร้างจากหลักการ "ถ้าเกิดสิ่งนี้ (Trigger) ให้ทำสิ่งนั้น (Action)"</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li class="font-medium text-gray-800"><b>หัวใจ Flow:</b> ความแตกต่างระหว่าง <button class="text-indigo-600 font-semibold underline" data-term="trigger">Trigger</button> (ตัวกระตุ้น) และ <button class="text-indigo-600 font-semibold underline" data-term="action">Action</button> (การกระทำ)</li>
+              <li class="font-medium text-gray-800">**Connectors:** เครื่องมือเชื่อมต่อกับบริการต่างๆ (เช่น Outlook, Teams) ก่อนใช้งานครั้งแรก คุณต้องมีการ <b>Sign in</b> เพื่อให้ Flow ได้รับอนุญาตในการเข้าถึงบริการนั้นๆ</li>
+              <li class="font-medium text-gray-800">**Dynamic Content:** เป็นกุญแจสำคัญในการทำให้ Flow ฉลาดขึ้น คือการนำข้อมูลที่ได้จาก Action ก่อนหน้ามาใช้ใน Action ถัดไป (เช่น นำ 'ชื่อผู้ส่งอีเมล' มาใส่ใน 'หัวข้อแจ้งเตือน Teams')</li>
+            </ul>
+			<br><br>
+            <!-- Placeholder for Flow Designer Screenshot -->
+            <div>
+               <img src="img/Screenshot 2025-10-25 124721.png">
+            </div>
+        </div>
+        
+        <div class="mt-4 p-3 bg-indigo-100 rounded-lg">
+              <h4 class="font-semibold text-indigo-800">Flow Type ที่ควรรู้:</h4>
+          <p class="text-sm text-indigo-600"><span class="font-medium"><b>Automated</b></span> (ทำงานอัตโนมัติจากเหตุการณ์)</p>
+          <p class="text-sm text-indigo-600"><span class="font-medium"><b>Instant</b></span> (ทำงานเมื่อกดปุ่ม)</p>
+              <p class="text-sm text-indigo-600"><span class="font-medium"><b>Scheduled</b></span> (ทำงานตามเวลาที่กำหนด เช่น สรุปรายงานทุกวันศุกร์)</p>
+        </div>
+      </section>
+		
+		<section id="section-trigger-action" class="bg-white p-6 rounded-xl card-shadow border-t-4 border-indigo-500 space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800">Trigger vs. Action: หัวใจ Flow</h2>
+        <p class="text-lg font-medium text-indigo-700">Flow ทุกตัวสร้างจากหลักการ "ถ้าเกิดสิ่งนี้ (Trigger) ให้ทำสิ่งนั้น (Action)"</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h3 class="font-semibold text-xl text-blue-800 mb-2">
+                    <span class="mr-2">➡️</span>Trigger (ตัวกระตุ้น)
+                </h3>
+                <p class="text-gray-700"><b>Trigger</b> คือ <b>เหตุการณ์ที่เกิดขึ้น</b> ซึ่งทำหน้าที่เป็น <b>จุดเริ่มต้น</b> ในการสั่งให้ Flow ทั้งหมดเริ่มทำงาน เปรียบเสมือนปุ่มเปิดการทำงาน</p>
+                <ul class="list-disc ml-6 text-sm text-gray-700 space-y-1.5 mt-3">
+                    <li><b>บทบาท:</b> สัญญาณเริ่มต้นการทำงาน (The "IF" หรือ "WHEN" statement)</li>
+                    <li><b>จำนวน:</b> มีได้เพียง <b>1 ตัว</b> ต่อ 1 Flow เท่านั้น</li>
+                    <li><b>ตัวอย่าง:</b> <b>เมื่อ</b> ได้รับอีเมลใหม่, <b>เมื่อ</b> มีการส่งฟอร์มใหม่, <b>เมื่อ</b> ถึงกำหนดเวลาที่ตั้งไว้</li>
+                </ul>
+            </div>
+            
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 class="font-semibold text-xl text-green-800 mb-2">
+                    <span class="mr-2">⚙️</span>Action (การกระทำ)
+                </h3>
+                <p class="text-gray-700"><b>Action</b> คือ <b>งานหรือขั้นตอนการทำงาน</b> ที่ Flow ดำเนินการตามลำดับหลังจากที่ Trigger ได้รับการกระตุ้นแล้ว</p>
+                <ul class="list-disc ml-6 text-sm text-gray-700 space-y-1.5 mt-3">
+                    <li><b>บทบาท:</b> ชุดคำสั่งที่ต้องทำ (The "DO THIS" statement)</li>
+                    <li><b>จำนวน:</b> มีได้ <b>หลายตัว</b> และสามารถเรียงต่อกันเป็นลำดับได้</li>
+                    <li><b>ตัวอย่าง:</b> <b>ส่ง</b> อีเมล, <b>สร้าง</b> ไฟล์ใน OneDrive, <b>เพิ่ม</b> แถวในตาราง Excel, <b>โพสต์</b> ข้อความใน Teams</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mt-4 p-3 bg-indigo-100 rounded-lg">
+              <h4 class="font-semibold text-indigo-800">สรุปความแตกต่าง:</h4>
+              <p class="text-sm text-indigo-600"><b>Trigger</b> คือ "WHEN" (เมื่อไหร่), <b>Action</b> คือ "DO THIS" (ให้ทำอะไร)</p>
+          </div>
+      </section>
+
+      <!-- === SECTION 2: AUTOMATED FLOW (FORM) === -->
+      <section id="section-automation" class="bg-white p-6 rounded-xl card-shadow border-t-4 border-teal-500 space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800">2. Flow อัตโนมัติ: ระบบลงทะเบียน & ตรวจสอบข้อมูล</h2>
+        <p class="text-lg font-medium text-teal-700">Case Study: การจัดการลงทะเบียนนักศึกษาผ่าน Microsoft Form</p>
+        
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">✅</span> 2.1 Trigger และการดึงข้อมูล
+            </h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li><b>Trigger:</b> ใช้ <b>`When a new response is submitted`</b> (Microsoft Forms)</li>
+              <li><b>Action:</b> ตามด้วย <b>`Get response details`</b> เพื่อดึงข้อมูลทั้งหมดจาก Form ที่ส่งเข้ามาเตรียมไว้ใช้งาน</li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">🛡️</span> 2.2 Data Validation (การตรวจสอบข้อมูล)
+            </h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li><b>Condition 1 (การไม่ว่าง):</b> ใช้ <button class="text-indigo-600 font-semibold underline" data-term="condition">Condition</button> เพื่อตรวจสอบว่าช่องข้อมูลสำคัญ (เช่น 'สาขาวิชา') <code class="bg-gray-200 p-1 rounded">is not equal to</code> ค่าว่างเปล่า</li>
+              <li><b>Condition 2 (ความยาว):</b> ใช้ <b>Expression</b> <code class="bg-gray-200 p-1 rounded">length(DynamicContent) is equal to 10</code> เพื่อตรวจสอบความยาวของรหัสนักศึกษา (ป้องกันการกรอกผิดหลัก)</li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">🔄</span> 2.3 การแยกเส้นทางด้วย Switch Control
+            </h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li><b>Flow Logic:</b> ใช้ <button class="text-indigo-600 font-semibold underline" data-term="switch">Switch Control</button> ภายในพื้นที่ **If Yes** ของ Condition เพื่อแยกการทำงาน (เช่น Case 1 สำหรับ 'วิศวะ', Case 2 สำหรับ 'บัญชี')</li>
+              <li><b>Action:</b> ในแต่ละ Case จะทำชุด Action ที่แตกต่างกัน (เช่น ดึงไฟล์คู่มือหลักสูตรที่ถูกต้อง, แจ้งเตือนอาจารย์ใน Channel Teams ที่เหมาะสม)</li>
+            </ul>
+        </div>
+      </section>
+
+      <!-- === SECTION 3: CONTROL & LOGIC === -->
+      <section id="section-control" class="bg-white p-6 rounded-xl card-shadow border-t-4 border-teal-500 space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800">3. Control & Logic: การจัดการเงื่อนไขและการวนซ้ำ</h2>
+        <p class="text-lg font-medium text-teal-700">ทำความเข้าใจ Control 3 ตัวหลักที่กำหนดทิศทางของ Flow</p>
+        <ul class="list-disc ml-6 text-gray-700 space-y-2">
+          <li><button class="text-indigo-600 font-semibold underline" data-term="condition">Condition</button> **(ตัวคัดกรอง):** ใช้ตรรกะ If/Else เพื่อตัดสินใจ</li>
+          <li><button class="text-indigo-600 font-semibold underline" data-term="switch">Switch</button> **(ตัวแยกเส้นทาง):** ใช้แทน Condition ซ้อนกันหลายชั้น</li>
+          <li>**Apply to each:** ใช้สำหรับวนซ้ำการทำงานกับข้อมูลหลายรายการ (เช่น วนส่งอีเมลให้ทุกคนในรายชื่อ หรือจัดการไฟล์แนบทุกไฟล์ในอีเมล)</li>
+          <li>**Email & Teams Actions:** การใช้ **`Send an email`** และ **`Post a message in a channel`** เพื่อแจ้งเตือนตามเงื่อนไข</li>
+        </ul>
+      </section>
+
+      <!-- === SECTION 4: INSTANT FLOW & INTEGRATION === -->
+      <section id="section-instant" class="bg-white p-6 rounded-xl card-shadow border-t-4 border-teal-500 space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800">4. Instant Flow: การบันทึกข้อมูลและเชื่อมต่อ App</h2>
+        <p class="text-lg font-medium text-teal-700">Case Study: บันทึกชั่วโมงทำงานและสั่งงานจากปุ่ม</p>
+        
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">💾</span> 4.1 Instant Flow to Excel
+            </h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li><b>Trigger:</b> ใช้ <b>`Manually trigger a flow`</b> เพื่อสร้างช่องกรอกข้อมูล (Text, Number, Date) ให้ผู้ใช้ Flow</li>
+              <li><b>Excel Action:</b> ใช้ Action <b>`Add a row into a table`</b> (Excel Online) โดยต้องมั่นใจว่าไฟล์ Excel มี **Table** ที่ตั้งชื่อไว้แล้ว</li>
+            </ul>
+        </div>
+        
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-lg text-teal-800 flex items-center mb-2">
+                <span class="mr-2 text-xl">📱</span> 4.2 Power Apps Connection
+            </h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1.5">
+              <li><b>Trigger:</b> ใช้ <b>`PowerApps (V2)`</b> Trigger เพื่อรับคำสั่งเรียก Flow และรับ Input จาก Power App</li>
+              <li><b>App Connection:</b> ใน Power Apps Studio ต้อง **Add Flow** เข้าไปในส่วน Data ก่อน</li>
+              <li><b>OnSelect Formula:</b> การเรียกใช้ Flow ในสูตร <code class="bg-gray-200 p-1 rounded">FlowName.Run(Input Value)</code> ในคุณสมบัติ OnSelect ของปุ่ม Power App </li>
+            </ul>
+        </div>
+      </section>
+
+      <!-- === SECTION 5: TROUBLESHOOTING === -->
+    
+      
+    </div>
+  </main>
+</div>
+
+<script>
+  // Static Data for Deep Dive Modal Content
+  const deepDiveContent = {
+    trigger: {
+      title: "Trigger (ตัวกระตุ้น)",
+      content: "Trigger คือเหตุการณ์เดียวที่เริ่มต้น Flow (The 'When' statement) มีได้เพียง 1 ตัวต่อ Flow เท่านั้น เช่น 'เมื่อมีการส่งฟอร์มใหม่' หรือ 'เมื่อกดปุ่มในแอป' | Flow จะไม่ทำงานหากไม่มี Trigger"
+    },
+    action: {
+      title: "Action (การกระทำ)",
+      content: "Action คือชุดคำสั่งที่ Flow ทำตามลำดับหลังจาก Trigger ถูกกระตุ้น (The 'Do this' statement) เช่น 'ส่งอีเมล', 'สร้างไฟล์ใน OneDrive', 'เพิ่มแถวใน Excel' สามารถมี Action ได้หลายตัวต่อ 1 Flow"
+    },
+    condition: {
+      title: "Control: Condition (If/Else)",
+      content: "Condition ใช้เพื่อตัดสินใจว่า Flow ควรดำเนินการต่อไปอย่างไร โดยการตรวจสอบเงื่อนไข (เช่น ถ้าค่านี้เท่ากับค่านี้) ถ้าเป็นจริง (True) Flow จะไปทำชุดคำสั่งหนึ่ง ถ้าเป็นเท็จ (False) จะไปทำอีกชุดคำสั่งหนึ่ง | ใช้ในการกรองข้อมูลที่ไม่สมบูรณ์ หรือแยกประเภทข้อมูลพื้นฐาน"
+    },
+    switch: {
+      title: "Control: Switch (Multiple Paths)",
+      content: "Switch ใช้เพื่อแยกเส้นทางการทำงานของ Flow ตามค่าที่กำหนด (เช่น ค่า 'สาขาวิชา') โดยแบ่งเป็นหลาย Case (กรณี) เหมาะสำหรับการจัดการตรรกะที่ซับซ้อนกว่า Condition เช่น การแยกนักศึกษาเข้า 3 ภาควิชาที่ต่างกัน"
+    },
+    base64: {
+      title: "การแก้ไขปัญหาไฟล์แนบ PDF (JSON/Base64)",
+      content: "เมื่อไฟล์แนบ PDF (Binary Data) ถูกส่งเป็น 'ภาษาต่างดาว' ให้แก้ไขโดยใช้ Expression ในช่อง Attachments: 1. ต้องใช้ **`base64(body('ActionName'))`** เพื่อแปลงข้อมูลไบนารีให้เป็นสตริงที่ปลอดภัย 2. ต้องกำหนด **`MimeType: 'application/pdf'`** และชื่อไฟล์ที่ลงท้ายด้วย **`.pdf`** ในรูปแบบ JSON Array เพื่อให้ Outlook รับรู้อย่างถูกต้อง"
+    },
+    onselect_best_practice: {
+      title: "Power Apps: OnSelect Best Practice (การเรียก Flow ที่ปลอดภัย)",
+      content: "การเรียก Flow ควรถูกครอบด้วยคำสั่ง If เพื่อตรวจสอบว่าการส่งฟอร์มสำเร็จหรือไม่: <br><code class='bg-gray-200 p-1 rounded'>If(formName.LastSubmit.IsBlank = false, FlowName.Run(...))</code><br>การทำเช่นนี้ช่วยให้ Flow ทำงานเฉพาะเมื่อข้อมูลถูกบันทึกใน Data Source จริงๆ เท่านั้น ป้องกันการเรียกใช้ Flow โดยไม่จำเป็นเมื่อ SubmitForm ล้มเหลว"
+    }
+  };
+
+  // Function to open the deep dive modal
+  function openDeepDive(term) {
+    const data = deepDiveContent[term];
+    if (data) {
+      document.getElementById('modal-title').textContent = data.title;
+      document.getElementById('modal-content').innerHTML = data.content;
+      document.getElementById('deep-dive-modal').classList.remove('hidden');
+    }
+  }
+
+  // Add event listeners to all deep-dive buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-term]').forEach(button => {
+      button.addEventListener('click', (e) => {
+        openDeepDive(e.target.dataset.term);
+      });
+    });
+
+    // Toggle logic for Accordion (Removed Accordion logic for continuous display)
+  });
+</script>
+
